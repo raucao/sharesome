@@ -1,0 +1,3 @@
+Sharesome.Router.map(function () {
+  
+});
