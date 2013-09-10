@@ -1,7 +1,11 @@
-<h1>
-  Sharesome
-</h1>
-<p>
-  Welcome to Yeoman and Ember.js!
-</p>
-{{outlet}}
+<div class="container flex-container">
+  <nav class="flex-item">
+    <ul>
+      <li id="logo">{{#link-to "index"}}S{{/link-to}}</li>
+      <li id="history">{{#link-to "history"}}H{{/link-to}}</li>
+    </ul>
+  </nav>
+  <main class="flex-item">
+    {{outlet}}
+  </main>
+</div>

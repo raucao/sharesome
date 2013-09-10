@@ -1,5 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
 html, body {
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  margin: 20px;
+}
+
+nav {
+  background-color: #222;
+  color: #ccc;
+  a {
+    color: #eee;
+    text-decoration: none;
+    &:hover {
+      background: #333;
+    }
+  }
+  #logo {
+    font-size: 30px;
+    a {
+      color: yellow;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+}
+
+main {
+  background-color: #eee;
+  color: #222;
 }
