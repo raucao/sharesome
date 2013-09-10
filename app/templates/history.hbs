@@ -1,8 +1,7 @@
-<section class="content">
-  <h2>[history]</h2>
+<section class="content history">
   <ul>
-    {{#each item in controller}}
-    <li>{{item}}</li>
+    {{#each url in controller}}
+    <li>{{history-item url=url}}</li>
     {{/each}}
   </ul>
 </section>

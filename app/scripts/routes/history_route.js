@@ -1,5 +1,7 @@
 Sharesome.HistoryRoute = Ember.Route.extend({
   model: function () {
-    return ['red', 'yellow', 'blue'];
+    return remoteStorage.shares.list().then(function(filenames){
+      return filenames.map(remoteStorage.shares.getFileURL);
+    });
   }
 });
