@@ -27,7 +27,7 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
     storeFile: function(mimeType, name, data) {
       return publicClient.storeFile(mimeType, name, data)
         .then(function() {
-          return this.getPictureURL(name);
+          return this.getFileURL(name);
         }.bind(this));
     },
 
