@@ -1,0 +1,16 @@
+<section class="content upload">
+  <h2>Upload a file:</h2>
+  <div class="file-select">
+    {{view Sharesome.UploadFileSelectView contentBinding='content'}}
+  </div>
+
+  {{#if hasFilesToUpload}}
+    <div class="upload-preview">
+      <ul>
+        {{#each file in content}}
+        <li>{{file.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</section>
