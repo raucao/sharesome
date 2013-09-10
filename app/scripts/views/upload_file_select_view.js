@@ -21,20 +21,24 @@ Sharesome.UploadFileSelectView = Ember.TextField.extend({
     if (inputFile.type.match('image.*')) {
       var fileReaderBase64 = new FileReader();
 
-      fileReaderBase64.onload = function(e) {
-        // console.log('Base64 result: ', e.srcElement.result);
-        self._parentView.controller.set('base64', e.srcElement.result);
-      };
+      fileReaderBase64.onload = (function(file) {
+        return function(e) {
+          console.log('Base64 result: ', this.result);
+          self._parentView.controller.set('base64', this.result);
+        };
+      })(inputFile);
 
       fileReaderBase64.readAsDataURL(inputFile);
     }
 
     var fileReaderBinary = new FileReader();
 
-    fileReaderBinary.onload = function(e) {
-      // console.log('Binary result: ', e.srcElement.result);
-      self._parentView.controller.set('binary', e.srcElement.result);
-    };
+    fileReaderBinary.onload = (function(file) {
+      return function(e) {
+        console.log('Binary result: ', this.result);
+        self._parentView.controller.set('binary', this.result);
+      };
+    })(inputFile);
 
     fileReaderBinary.readAsArrayBuffer(inputFile);
   }
