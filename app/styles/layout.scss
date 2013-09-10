@@ -1,4 +1,6 @@
 *, *:before, *:after {
+  margin: 0;
+  padding: 0;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -110,3 +112,10 @@ main {
   }
 }
 
+#remotestorage-connect {
+  #remotestorage-widget {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.8rem;
+  }
+}

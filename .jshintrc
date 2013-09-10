@@ -19,6 +19,9 @@
         "jQuery": true,
         "Ember": true,
         "Handlebars": true,
-        "DS": true
+        "DS": true,
+        "$": true,
+        "remoteStorage": true,
+        "RemoteStorage": true
     }
 }
