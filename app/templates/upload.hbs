@@ -4,13 +4,14 @@
     {{view Sharesome.UploadFileSelectView contentBinding='content'}}
   </div>
 
-  {{#if hasFilesToUpload}}
+  {{#if fileToUpload}}
     <div class="upload-preview">
-      <ul>
-        {{#each file in content}}
-        <li>{{file.name}}</li>
-        {{/each}}
-      </ul>
+      {{#if fileIsImage}}
+        <p>Image file to upload:</p>
+        <img {{bind-attr src=base64}}>
+      {{else}}
+        <p>File of type {{type}}</p>
+      {{/if}}
     </div>
   {{/if}}
 </section>

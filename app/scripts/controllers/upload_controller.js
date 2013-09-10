@@ -1,7 +1,8 @@
-Sharesome.UploadController = Ember.ArrayController.extend({
-  content: [{name: 1}, {name: 2}, {name: 3}],
+Sharesome.UploadController = Ember.ObjectController.extend({
+  content: {},
+  fileToUpload: false,
 
-  hasFilesToUpload: function() {
-    return this.get('content').length > 0;
-  }
+  fileIsImage: function() {
+    return this.get('content.type').match('image.*');
+  }.property('content.type')
 });
