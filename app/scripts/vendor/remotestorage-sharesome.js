@@ -25,6 +25,9 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
      *    uploaded file (see <getFileURL>).
      */
     storeFile: function(mimeType, name, data) {
+      var date = this._formattedDate(new Date());
+      name = date + "-" + name;
+
       return publicClient.storeFile(mimeType, name, data)
         .then(function() {
           return this.getFileURL(name);
@@ -75,7 +78,35 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
      */
     getFileURL: function(name) {
       return publicClient.getItemURL(name);
+    },
+
+    /**
+     * Method: _formattedDate
+     *
+     * Helper method for formatting dates for the filenames
+     *
+     * Parameters:
+     *   date - a Date object
+     *
+     * Returns:
+     *   A formatted date string, like e.g. '131106-1523'
+     */
+
+    _formattedDate: function (date) {
+      var pad = function(num) {
+        num = String(num);
+        if (num.length === 1) { num = "0" + num; }
+        return num;
+      };
+      var yrs = pad( date.getUTCFullYear().toString().substr(2) );
+      var mon = pad( date.getUTCMonth() + 1 );
+      var day = pad( date.getUTCDate() );
+      var hrs = pad( date.getUTCHours() );
+      var min = pad( date.getUTCMinutes() );
+
+      return yrs + mon + day + "-" + hrs + min;
     }
+
   };
 
   return {
