@@ -1,29 +1,27 @@
-<div class="container flex-container">
-  <nav class="flex-item">
-    <ul>
-      <li id="logo">{{#link-to "index"}}S{{/link-to}}</li>
-      <li id="history">
-      {{#view Sharesome.NavView path=history}}
-        {{#if Sharesome.rsConnected}}
-        {{#link-to "history"}}H{{/link-to}}
-        {{else}}
-        <a href="#">H</a>
-        {{/if}}
-      {{/view}}
-      </li>
-    </ul>
-  </nav>
-  <main class="flex-item">
-    {{#if Sharesome.rsConnected}}
-    {{outlet}}
-    {{/if}}
-
-    {{#unless Sharesome.rsConnected}}
-      {{#if Sharesome.rsConnecting}}
-      Connecting... (should be styled in a nice way)
+<nav>
+  <ul>
+    <li id="logo">{{#link-to "index"}}S{{/link-to}}</li>
+    <li id="history">
+    {{#view Sharesome.NavView path=history}}
+      {{#if Sharesome.rsConnected}}
+      {{#link-to "history"}}H{{/link-to}}
       {{else}}
-        {{partial "welcome"}}
+      <a href="#">H</a>
       {{/if}}
-    {{/unless}}
-  </main>
-</div>
+    {{/view}}
+    </li>
+  </ul>
+</nav>
+<main>
+  {{#if Sharesome.rsConnected}}
+  {{outlet}}
+  {{/if}}
+
+  {{#unless Sharesome.rsConnected}}
+    {{#if Sharesome.rsConnecting}}
+    Connecting... (should be styled in a nice way)
+    {{else}}
+      {{partial "welcome"}}
+    {{/if}}
+  {{/unless}}
+</main>

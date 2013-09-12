@@ -1,3 +1,5 @@
 Sharesome.UploadView = Ember.View.extend({
-  templateName: 'upload'
+  templateName: 'upload',
+  hasFileToUploadBinding: 'this.controller.fileToUpload',
+  classNameBindings: ['hasFileToUpload']
 });
