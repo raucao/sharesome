@@ -53,7 +53,10 @@ main {
 }
 
 #dropzone {
-  &:hover, &.active {
+  &:hover {
+    background-color: #fff;
+  }
+  &.drag-active {
     background-color: #fff;
   }
 }
