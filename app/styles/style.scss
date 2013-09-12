@@ -52,11 +52,15 @@ main {
   }
 }
 
+.has-file-to-upload #dropzone {
+  display: none;
+}
+
 .upload-preview {
   .image, #file-preview {
     margin-bottom: 1rem;
   }
-  #file-preview {
+  #file-preview:not(.image) {
     height: 200px;
     padding-top: 90px;
     color: #ccc;
