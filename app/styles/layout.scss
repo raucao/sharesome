@@ -1,3 +1,5 @@
+@import "compass";
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -34,7 +36,7 @@ main {
   padding-left: 4rem;
   text-align: center;
   section.content {
-    padding: 1rem 2rem;
+    padding: 4rem 4rem 0 0;
     margin: 0 auto;
     &.welcome {
       text-align: left;
@@ -44,6 +46,50 @@ main {
     }
   }
 }
+
+// UPLOAD
+
+#dropzone {
+  display: block;
+  position:absolute;
+  height:auto;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 0 0 4rem;
+  background-color: #fff;
+  border: none;
+
+  &.active {
+    background-color: orange;
+  }
+
+  label.file-picker {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    @include opacity(0);
+
+    input {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      @include opacity(0);
+    }
+  }
+}
+
+.has-file-to-upload #dropzone {
+  display: none;
+}
+
+// RS
 
 #remotestorage-connect {
   #remotestorage-widget {

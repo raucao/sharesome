@@ -52,44 +52,18 @@ main {
   }
 }
 
-// UPLOAD
-
-#dropzone {
-  display: block;
-  position:absolute;
-  height:auto;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0 0 0 4rem;
-  background-color: #fff;
-  border: none;
-
-  &.active {
-    background-color: orange;
+.upload-preview {
+  .image {
+    margin-bottom: 1rem;
   }
-
-  label.file-picker {
-    position: absolute;
-    height: auto;
-    width: 100%;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    @include opacity(0);
-
-    input {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      @include opacity(0);
+  .meta-data {
+    margin-bottom: 2rem;
+    span {
+      display: block;
+      margin: 0 0 0.5rem 0;
+      &.size {
+        color: #888;
+      }
     }
   }
-}
-
-.has-file-to-upload #dropzone {
-  display: none;
 }
