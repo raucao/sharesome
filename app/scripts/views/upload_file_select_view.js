@@ -16,7 +16,7 @@ Sharesome.UploadFileSelectView = Ember.TextField.extend({
     var c = self._parentView.controller;
     c.set('name', inputFile.name);
     c.set('type', inputFile.type);
-    c.set('fileToUpload', inputFile.type);
+    c.set('fileToUpload', true);
 
     if (inputFile.type.match('image.*')) {
       var fileReaderBase64 = new FileReader();
