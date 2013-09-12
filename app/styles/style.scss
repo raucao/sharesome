@@ -13,6 +13,9 @@ nav {
     &:hover {
       background: #333;
     }
+    &:active {
+      background: #555;
+    }
   }
   #logo {
     font-size: 30px;
