@@ -1,3 +1,5 @@
+@import "compass";
+
 html, body {
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -31,10 +33,6 @@ nav {
 main {
   background-color: #eee;
   color: #222;
-}
-
-.file-select {
-  padding: 1rem 0;
 }
 
 .content img {
