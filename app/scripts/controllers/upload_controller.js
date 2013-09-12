@@ -10,7 +10,6 @@ Sharesome.UploadController = Ember.ObjectController.extend({
     submitFileUpload: function() {
       var self = this;
       var file = this.get('content');
-      console.log(file.type, file.name, file.binary);
 
       remoteStorage.shares.storeFile(file.type, file.name, file.binary).then(
         function(url){
@@ -18,7 +17,7 @@ Sharesome.UploadController = Ember.ObjectController.extend({
           self.set('content', {});
           window.alert("Here's ur URL: " + url);
         }, function(error) {
-          console.log('Something bad happened during upload. Please try again.');
+          window.alert('Something bad happened during upload. Please try again.');
           console.log(error);
         });
     }

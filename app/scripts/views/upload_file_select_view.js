@@ -11,7 +11,6 @@ Sharesome.UploadFileSelectView = Ember.TextField.extend({
   },
 
   handleInputFile: function(inputFile) {
-    // console.log('Input file: ', inputFile);
     var self = this;
     var c = self._parentView.controller;
     c.set('name', inputFile.name);
@@ -23,7 +22,6 @@ Sharesome.UploadFileSelectView = Ember.TextField.extend({
 
       fileReaderBase64.onload = (function(file) {
         return function(e) {
-          console.log('Base64 result: ', this.result);
           self._parentView.controller.set('base64', this.result);
         };
       })(inputFile);
@@ -35,7 +33,6 @@ Sharesome.UploadFileSelectView = Ember.TextField.extend({
 
     fileReaderBinary.onload = (function(file) {
       return function(e) {
-        console.log('Binary result: ', this.result);
         self._parentView.controller.set('binary', this.result);
       };
     })(inputFile);
