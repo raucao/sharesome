@@ -85,3 +85,21 @@ main {
     }
   }
 }
+
+.content.history {
+  width: 90%;
+  ul {
+    @include clearfix();
+    list-style: none;
+    li {
+      float: left;
+      margin: 0 2rem 2rem 0;
+      .image {
+        display: block;
+        width: 200px;
+        height: 200px;
+        background-size: cover;
+      }
+    }
+  }
+}
