@@ -2,7 +2,13 @@
   <nav class="flex-item">
     <ul>
       <li id="logo">{{#link-to "index"}}S{{/link-to}}</li>
-      <li id="history">{{#link-to "history"}}H{{/link-to}}</li>
+      <li id="history">
+      {{#if Sharesome.rsConnected}}
+      {{#link-to "history"}}H{{/link-to}}
+      {{else}}
+      <a href="#">H</a>
+      {{/if}}
+      </li>
     </ul>
   </nav>
   <main class="flex-item">
