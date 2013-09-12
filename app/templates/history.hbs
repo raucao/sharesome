@@ -1,7 +1,10 @@
 <section class="content history">
   <ul>
-    {{#each url in controller}}
+    {{#each}}
     <li>{{history-item url=url}}</li>
     {{/each}}
   </ul>
+  <div class="item-count">
+    <p>{{itemCount}} items</p>
+  </div>
 </section>
