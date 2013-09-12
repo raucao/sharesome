@@ -6,7 +6,5 @@ Ember.Handlebars.helper('humanFileSize', function(fileSizeInBytes, options) {
         i++;
     } while (fileSizeInBytes > 1024);
 
-    var fileSize =  Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i];
-
-    return new Handlebars.SafeString(fileSize);
+    return String(Math.max(fileSizeInBytes, 0.1).toFixed(1) + byteUnits[i]);
 });
