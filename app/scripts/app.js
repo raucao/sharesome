@@ -1,6 +1,8 @@
 var Sharesome = window.Sharesome = Ember.Application.create({
   LOG_TRANSITIONS: true,
-  LOG_ACTIVE_GENERATION: true
+  LOG_ACTIVE_GENERATION: true,
+  rsConnected: false,
+  rsConnecting: false
 });
 
 Ember.RSVP.configure('onerror', function(e) {
@@ -18,11 +20,26 @@ Sharesome.initializer({
     remoteStorage.access.claim('shares', 'rw');
     remoteStorage.displayWidget('remotestorage-connect',
                                 { redirectUri: window.location.href });
+
   }
 });
 
 remoteStorage.on('ready', function() {
+  Sharesome.set('rsConnecting', false);
+  Sharesome.set('rsConnected', true );
   Sharesome.advanceReadiness();
+});
+remoteStorage.on('disconnected', function() {
+  Sharesome.set('rsConnecting', false);
+  Sharesome.set('rsConnected', false );
+});
+remoteStorage.on('connecting', function() {
+  Sharesome.set('rsConnecting', true);
+  Sharesome.set('rsConnected', false );
+});
+remoteStorage.on('authing', function() {
+  Sharesome.set('rsConnecting', true);
+  Sharesome.set('rsConnected', false );
 });
 
 /* Order and include as you please. */
