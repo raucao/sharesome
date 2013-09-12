@@ -107,8 +107,16 @@ nav {
 main {
   width: 100%;
   padding-left: 4rem;
+  text-align: center;
   section.content {
     padding: 1rem 2rem;
+    margin: 0 auto;
+    &.welcome {
+      text-align: left;
+      padding: 4rem 4rem 0 0;
+      width: 90%;
+      max-width: 50rem;
+    }
   }
 }
 

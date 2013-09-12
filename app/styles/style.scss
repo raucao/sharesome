@@ -41,3 +41,15 @@ main {
   max-width: 500px;
   max-height: 300px;
 }
+
+.content.welcome {
+  font-size: 1.4rem;
+  line-height: 1.4em;
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2.8rem;
+  }
+  p {
+    margin-bottom: 1.4rem;
+  }
+}
