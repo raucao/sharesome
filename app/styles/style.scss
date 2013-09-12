@@ -52,6 +52,12 @@ main {
   }
 }
 
+#dropzone {
+  &:hover, &.active {
+    background-color: #fff;
+  }
+}
+
 .has-file-to-upload #dropzone {
   display: none;
 }
