@@ -2,9 +2,9 @@
  * File: Shares
  *
  * Maintainer: - Sebastian Kippe <sebastian@kip.pe>
- * Version: -    0.0.1
+ * Version: -    0.0.2
  *
- * Manages sharing of files
+ * Manages sharing of files. All shares are stored with a timestamp prefix.
  */
 
 RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
@@ -83,7 +83,7 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
     /**
      * Method: _formattedDate
      *
-     * Helper method for formatting dates for the filenames
+     * Helper method for formatting dates for filenames
      *
      * Parameters:
      *   date - a Date object
