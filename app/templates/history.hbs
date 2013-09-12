@@ -1,7 +1,12 @@
 <section class="content history">
   <ul>
     {{#each}}
-    <li>{{history-item url=url name=name}}</li>
+    <li>
+      {{history-item url=url name=name}}
+      <div class="overlay">
+        <a class="delete" href="#">X</a>
+      </div>
+    </li>
     {{/each}}
   </ul>
   <div class="item-count">
