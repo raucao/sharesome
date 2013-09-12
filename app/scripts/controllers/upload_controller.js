@@ -7,6 +7,11 @@ Sharesome.UploadController = Ember.ObjectController.extend({
   }.property('content.type'),
 
   actions: {
+    cancelFileUpload: function() {
+      this.set('fileToUpload', false);
+      this.set('content', {});
+    },
+
     submitFileUpload: function() {
       var self = this;
       var file = this.get('content');
