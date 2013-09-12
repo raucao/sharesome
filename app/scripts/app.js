@@ -1,6 +1,7 @@
 var Sharesome = window.Sharesome = Ember.Application.create({
   LOG_TRANSITIONS: true,
   LOG_ACTIVE_GENERATION: true,
+  currentPath: '',
   rsConnected: false,
   rsConnecting: false
 });

@@ -10,7 +10,7 @@ nav {
   a {
     color: #eee;
     text-decoration: none;
-    &:hover {
+    &:hover, &.active {
       background: #333;
     }
     &:active {
