@@ -6,6 +6,16 @@
     </ul>
   </nav>
   <main class="flex-item">
+    {{#if Sharesome.rsConnected}}
     {{outlet}}
+    {{/if}}
+
+    {{#unless Sharesome.rsConnected}}
+      {{#if Sharesome.rsConnecting}}
+      Connecting... (should be styled in a nice way)
+      {{else}}
+      Welcome page with explanation about remoteStorage etc.
+      {{/if}}
+    {{/unless}}
   </main>
 </div>
