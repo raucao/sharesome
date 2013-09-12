@@ -8,11 +8,13 @@
 <section class="content upload-preview">
 <div class="upload-preview">
   {{#if fileIsImage}}
-  <div class="image">
+  <div id="file-preview" class="image">
     <img {{bind-attr src=base64}}>
   </div>
   {{else}}
-  <p>File of type {{type}}</p>
+  <div id="file-preview" {{bind-attr class="simpleFileType"}}>
+    <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
+  </div>
   {{/if}}
   <p class="meta-data">
     <span class="name">{{name}}</span>

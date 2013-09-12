@@ -53,8 +53,13 @@ main {
 }
 
 .upload-preview {
-  .image {
+  .image, #file-preview {
     margin-bottom: 1rem;
+  }
+  #file-preview {
+    height: 200px;
+    padding-top: 90px;
+    color: #ccc;
   }
   .meta-data {
     margin-bottom: 2rem;
