@@ -22,5 +22,28 @@ Sharesome.HistoryController = Ember.ArrayController.extend({
 
   itemCount: function() {
     return this.get('content').length;
-  }.property('content.@each')
+  }.property('content.@each'),
+
+  removeItem: function(propName, value) {
+    var obj = this.findProperty(propName, value);
+    this.removeObject(obj);
+  },
+
+  actions: {
+
+    remove: function(name) {
+      var self = this;
+
+      remoteStorage.shares.remove(name).then(
+        function() {
+          self.removeItem('name', name);
+        },
+        function(e) {
+          window.alert("Couldn't remove item. Please try again. Sorry!");
+          console.log(e);
+        }
+      );
+    }
+
+  }
 });

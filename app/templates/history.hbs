@@ -4,7 +4,7 @@
     <li>
       {{history-item url=url name=name}}
       <div class="overlay">
-        <a class="delete" href="#">X</a>
+        <a class="delete" {{action "remove" name}}>X</a>
       </div>
     </li>
     {{/each}}
