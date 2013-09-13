@@ -7,5 +7,9 @@ Sharesome.HistoryItemComponent = Ember.Component.extend({
     if (this.get('isImage')) {
       return 'background-image: url('+this.get('url')+')';
     }
-  }.property('url')
+  }.property('url'),
+
+  nameWithoutTimestamp: function() {
+    return this.get('name').substr(12);
+  }.property('name')
 });

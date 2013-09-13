@@ -96,10 +96,32 @@ main {
       float: left;
       margin: 0 2rem 2rem 0;
       .image {
+        position: relative;
         display: block;
         width: 200px;
         height: 200px;
         background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        @include border-radius(5px);
+        &.generic-file {
+          background-image: url(/images/document.svg);
+          background-position: center 40px;
+          background-size: 100px;
+          background-color: #222;
+          .meta {
+            position: absolute;
+            width: auto;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            right: 1.2rem;
+            color: #aaa;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
       }
       .overlay {
         display: none;
@@ -110,6 +132,7 @@ main {
         left: 0;
         right: 0;
         background: rgba(0,0,0,0.5);
+        @include border-bottom-radius(5px);
         @include clearfix;
         a {
           background: rgba(0,0,0,0.2);
