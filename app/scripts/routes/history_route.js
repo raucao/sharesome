@@ -1,2 +1,2 @@
-Sharesome.HistoryRoute = Ember.Route.extend({
+Sharesome.HistoryRoute = Sharesome.ConnectedRoute.extend({
 });
