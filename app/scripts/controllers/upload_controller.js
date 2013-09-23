@@ -1,6 +1,7 @@
 Sharesome.UploadController = Ember.ObjectController.extend({
   content: {},
   fileToUpload: false,
+  isUploading: false,
 
   fileIsImage: function() {
     return this.get('content.type').match('image.*');
@@ -23,14 +24,19 @@ Sharesome.UploadController = Ember.ObjectController.extend({
 
     submitFileUpload: function() {
       var self = this;
-      var file = this.get('content');
+      var file = self.get('content');
+      self.set('isUploading', true);
 
       remoteStorage.shares.storeFile(file.type, file.name, file.binary).then(
         function(url){
-          self.set('fileToUpload', false);
-          self.set('content', {});
+          self.setProperties({
+            fileToUpload: false,
+            isUploading: false,
+            content: {}
+          });
           window.alert("Here's ur URL: " + url);
         }, function(error) {
+          self.set('isUploading', false);
           window.alert('Something bad happened during upload. Please try again.');
           console.log(error);
         });

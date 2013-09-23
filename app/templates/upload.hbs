@@ -5,25 +5,31 @@
 </section>
 
 {{#if fileToUpload}}
-<section class="content upload-preview">
-<div class="upload-preview">
-  {{#if fileIsImage}}
-  <div id="file-preview" class="image">
-    <img {{bind-attr src=base64}}>
-  </div>
+  {{#if isUploading}}
+    <section class="content upload-in-progress">
+      <p>Uploading...<p>
+    </section>
   {{else}}
-  <div id="file-preview" {{bind-attr class="simpleFileType"}}>
-    <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
-  </div>
+    <section class="content upload-preview">
+      <div class="upload-preview">
+        {{#if fileIsImage}}
+        <div id="file-preview" class="image">
+          <img {{bind-attr src=base64}}>
+        </div>
+        {{else}}
+        <div id="file-preview" {{bind-attr class="simpleFileType"}}>
+          <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
+        </div>
+        {{/if}}
+        <p class="meta-data">
+          <span class="name">{{name}}</span>
+          <span class="size">{{humanFileSize size}}</span>
+        </p>
+        <p class="actions">
+          <button {{action submitFileUpload}}>Upload</button>
+          <button {{action cancelFileUpload}}>Cancel</button>
+        </p>
+      </div>
+    </section>
   {{/if}}
-  <p class="meta-data">
-    <span class="name">{{name}}</span>
-    <span class="size">{{humanFileSize size}}</span>
-  </p>
-  <p class="actions">
-    <button {{action submitFileUpload}}>Upload</button>
-    <button {{action cancelFileUpload}}>Cancel</button>
-  </p>
-</div>
-</section>
 {{/if}}
