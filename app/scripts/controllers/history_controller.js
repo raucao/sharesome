@@ -31,6 +31,10 @@ Sharesome.HistoryController = Ember.ArrayController.extend({
 
   actions: {
 
+    share: function(url) {
+      window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
+    },
+
     remove: function(name) {
       var self = this;
 
