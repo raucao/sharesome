@@ -7,16 +7,21 @@
         <!-- build:css styles/main.css -->
         <link rel="stylesheet" href="styles/layout.css">
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="styles/vendor/vex.css" />
+        <link rel="stylesheet" href="styles/vendor/vex-theme-flat-attack.css" />
         <!-- endbuild -->
 </head>
     <body>
         <div id="remotestorage-connect"></div>
+
 
         <!-- build:js scripts/components.js -->
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="scripts/vendor/moment.min.js"></script>
         <script src="scripts/vendor/spin.min.js"></script>
         <script src="scripts/vendor/jquery.spin.js"></script>
+        <script src="scripts/vendor/vex.combined.min.js"></script>
+        <script>vex.defaultOptions.className = 'vex-theme-flat-attack';</script>
         <script src="scripts/vendor/handlebars.runtime.js"></script>
         <script src="scripts/vendor/ember.prod.js"></script>
         <script src="scripts/vendor/remotestorage.js"></script>

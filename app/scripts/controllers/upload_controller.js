@@ -34,10 +34,10 @@ Sharesome.UploadController = Ember.ObjectController.extend({
             isUploading: false,
             content: {}
           });
-          window.alert("Here's ur URL: " + url);
+          window.vex.dialog.alert("Here you go:<p><input type='text' value='"+url+"'>");
         }, function(error) {
           self.set('isUploading', false);
-          window.alert('Something bad happened during upload. Please try again.');
+          window.vex.dialog.alert('Something bad happened during upload.<br />Please try again.');
           console.log(error);
         });
     }
