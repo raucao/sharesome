@@ -7,7 +7,8 @@
 {{#if fileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
-      <p>Uploading...<p>
+      {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+      <p>Uploading<p>
     </section>
   {{else}}
     <section class="content upload-preview">
