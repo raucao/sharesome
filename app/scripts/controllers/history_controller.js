@@ -33,6 +33,7 @@ Sharesome.HistoryController = Ember.ArrayController.extend({
 
     share: function(url) {
       window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
+      $('.vex-content input').first().select();
     },
 
     remove: function(name) {

@@ -34,7 +34,8 @@ Sharesome.UploadController = Ember.ObjectController.extend({
             isUploading: false,
             content: {}
           });
-          window.vex.dialog.alert("Here you go:<p><input type='text' value='"+url+"'>");
+          window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
+          $('.vex-content input').first().select();
         }, function(error) {
           self.set('isUploading', false);
           window.vex.dialog.alert('Something bad happened during upload.<br />Please try again.');
