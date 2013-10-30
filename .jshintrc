@@ -23,6 +23,7 @@
         "$": true,
         "remoteStorage": true,
         "RemoteStorage": true,
-        "moment": true
+        "moment": true,
+        "Sharesome": true
     }
 }
