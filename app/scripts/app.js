@@ -17,6 +17,7 @@ if (window.location.hash.match(/#access_token=.+/)) {
 Sharesome.initializer({
   name: 'remoteStorage',
   initialize: function(container, application) {
+    RemoteStorage.WireClient.REQUEST_TIMEOUT = 90000;
     remoteStorage.access.claim('shares', 'rw');
     remoteStorage.displayWidget('remotestorage-connect',
                                 { redirectUri: window.location.href });

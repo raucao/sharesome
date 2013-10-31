@@ -1,6 +1,6 @@
 Sharesome.HistoryItemComponent = Ember.Component.extend({
   isImage: function() {
-    return this.get('url').match(/(jpg|jpeg|png|gif)$/);
+    return this.get('url').match(/(jpg|jpeg|png|gif)$/i);
   }.property('url'),
 
   itemStyle: function() {
