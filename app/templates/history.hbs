@@ -4,8 +4,8 @@
     <li>
       {{history-item url=url name=name}}
       <div class="overlay">
-        <a class="delete" {{action "remove" name}}>X</a>
-        <a class="share" {{action "share" url}}>→</a>
+        <a class="delete" {{action "remove" name}}><i class="icon-trash"></i></a>
+        <a class="share" {{action "share" url}}><i class="icon-export"></i></a>
       </div>
     </li>
     {{/each}}

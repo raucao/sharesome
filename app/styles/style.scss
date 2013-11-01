@@ -28,6 +28,9 @@ nav {
   ul {
     list-style: none;
   }
+  li#history a {
+    font-size: 24px;
+  }
 }
 
 main {
@@ -131,7 +134,7 @@ main {
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(34,34,34,0.8);
         @include border-bottom-radius(5px);
         @include clearfix;
         a {
