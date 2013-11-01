@@ -6,6 +6,10 @@ html, body {
   background-color: #eee;
 }
 
+a:active {
+  outline: none;
+}
+
 nav {
   background-color: #222;
   color: #ccc;
