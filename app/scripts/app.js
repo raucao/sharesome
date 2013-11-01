@@ -43,6 +43,9 @@ remoteStorage.on('authing', function() {
   Sharesome.set('rsConnected', false );
 });
 
+// Dialog style
+window.vex.defaultOptions.className = 'vex-theme-flat-attack';
+
 /* Order and include as you please. */
 require('scripts/controllers/*');
 require('scripts/store');
