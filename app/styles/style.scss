@@ -98,6 +98,35 @@ main {
       }
     }
   }
+  button.upload, button.cancel {
+    border: none;
+    @include border-radius(5px);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
+  button.upload {
+    background: #222;
+    color: #eee;
+    &:hover, &.active {
+      background: #333;
+    }
+    &:active {
+      background: #555;
+    }
+  }
+
+  button.cancel {
+    background: #ccc;
+    color: #555;
+    &:hover, &.active {
+      background: #bbb;
+    }
+    &:active {
+      background: #aaa;
+    }
+  }
 }
 
 .content.history {
