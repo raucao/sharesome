@@ -7,13 +7,14 @@
 <main>
   {{#if Sharesome.rsConnected}}
   {{outlet}}
-  {{/if}}
-
-  {{#unless Sharesome.rsConnected}}
+  {{else}}
     {{#if Sharesome.rsConnecting}}
-    Connecting... (should be styled in a nice way)
+    <section class="content remotestorage-connecting">
+      {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+      <p>Connecting<p>
+    </section>
     {{else}}
       {{partial "welcome"}}
     {{/if}}
-  {{/unless}}
+  {{/if}}
 </main>
