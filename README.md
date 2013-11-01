@@ -1,3 +1,13 @@
-# Setup
+# Sharesome (Beta)
 
-run `bundle install && npm install && bower install`
+Share files quickly from your remote storage
+
+## Development setup
+
+Install dependencies:
+
+    bundle install && npm install && bower install
+
+Run development server:
+
+    grunt server
