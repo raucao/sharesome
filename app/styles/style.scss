@@ -66,6 +66,13 @@ main {
   &.drag-active {
     background-color: #fff;
   }
+
+  .hint {
+    background: url(/images/upload.svg) center 140px;
+    background-repeat: no-repeat;
+    padding-top: 260px;
+    color: #bbb;
+  }
 }
 
 .has-file-to-upload #dropzone {
