@@ -13,7 +13,8 @@ Sharesome.HistoryController = Ember.ArrayController.extend({
       $.each(filenames, function(index, filename) {
         var item = Ember.Object.create({
           name: filename,
-          url: remoteStorage.shares.getFileURL(filename)
+          url: remoteStorage.shares.getFileURL(filename),
+          isDeleting: false
         });
         self.pushObject(item);
       });
@@ -38,12 +39,15 @@ Sharesome.HistoryController = Ember.ArrayController.extend({
 
     remove: function(name) {
       var self = this;
+      var item = this.findProperty('name', name);
+      item.set('isDeleting', true);
 
       remoteStorage.shares.remove(name).then(
         function() {
-          self.removeItem('name', name);
+          self.removeObject(item);
         },
         function(e) {
+          item.set('isDeleting', false);
           window.alert("Couldn't remove item. Please try again. Sorry!");
           console.log(e);
         }

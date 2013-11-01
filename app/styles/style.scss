@@ -159,6 +159,17 @@ main {
       &:hover .overlay {
         display: block;
       }
+      .overlay-deleting {
+        position: absolute;
+        width: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(34,34,34,0.8);
+        @include border-radius(5px);
+        @include clearfix;
+      }
     }
   }
 }

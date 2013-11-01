@@ -7,6 +7,11 @@
         <a class="delete" {{action "remove" name}}><i class="icon-trash"></i></a>
         <a class="share" {{action "share" url}}><i class="icon-export"></i></a>
       </div>
+      {{#if isDeleting}}
+      <div class="overlay-deleting">
+        {{spinner height=200 width=4 radius=20 color='#eee' top='auto' left='auto'}}
+      </div>
+      {{/if}}
     </li>
     {{/each}}
   </ul>
