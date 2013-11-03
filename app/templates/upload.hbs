@@ -18,7 +18,7 @@
       <div class="upload-preview">
         {{#if fileIsImage}}
         <div id="file-preview" class="image">
-          <img {{bind-attr src=base64}}>
+          <img id="preview-image" {{bind-attr src=base64}}>
         </div>
         {{else}}
         <div id="file-preview" {{bind-attr class="simpleFileType"}}>
