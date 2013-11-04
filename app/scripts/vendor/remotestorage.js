@@ -1,4 +1,4 @@
-/** remotestorage.js 0.8.2-head remotestorage.io, MIT-licensed **/
+/** remotestorage.js 0.8.2 remotestorage.io, MIT-licensed **/
 
 /** FILE: lib/promising.js **/
 (function(global) {
@@ -228,7 +228,7 @@
     /**
      * Event: sync-busy
      *
-     * fired when a sync cyle starts
+     * fired when a sync cycle starts
      *
      **/
     /**
@@ -3401,11 +3401,7 @@ Math.uuid = function (len, radix) {
     },
 
     makePath: function(path) {
-      var parts = path.split('/');
-      for(var i=0; i<parts.length; i++) {
-        parts[i] = encodeURIComponent(parts[i]);
-      }
-      return this.base + (parts.join('/') || '');
+      return this.base + (path || '');
     },
 
     _fireChange: function(event) {
@@ -3420,9 +3416,23 @@ Math.uuid = function (len, radix) {
       }
     },
 
+    //FIXME this is a duplicate from wireclient.js
+    _cleanPath: function(path) {
+      return path.replace(/\/+/g, '/').split('/').map(encodeURIComponent).join('/');
+    },
+
+    /**
+     * Method: getItemURL
+     *
+     * Retrieve full URL of item
+     *
+     * Parameters:
+     *   path     - Path relative to the module root.
+     */
     getItemURL: function(path) {
-      if(this.storage.connected) {
-        return this.storage.remote.href + this.makePath(path);
+      if (this.storage.connected) {
+        path = this._cleanPath( this.makePath(path) );
+        return this.storage.remote.href + path;
       } else {
         return undefined;
       }
@@ -3496,7 +3506,7 @@ Math.uuid = function (len, radix) {
     declare: function(moduleName, alias, uri, schema) {
       var fullAlias = moduleName + '/' + alias;
 
-      if(schema.extends) {
+      if (schema.extends) {
         var extendedAlias;
         var parts = schema.extends.split('/');
         if(parts.length === 1) {
@@ -3510,7 +3520,7 @@ Math.uuid = function (len, radix) {
         }
         schema.extends = this.schemas[extendedUri];
       }
-      
+
       this.uris[fullAlias] = uri;
       this.aliases[uri] = fullAlias;
       this.schemas[uri] = schema;
