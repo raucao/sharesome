@@ -63,7 +63,7 @@ main {
   }
 
   .hint {
-    background: url(/images/upload.svg) center 140px;
+    background: url(/assets/images/upload.svg) center 140px;
     background-repeat: no-repeat;
     padding-top: 260px;
     color: #bbb;
@@ -143,7 +143,7 @@ main {
         background-repeat: no-repeat;
         @include border-radius(5px);
         &.generic-file {
-          background-image: url(/images/document.svg);
+          background-image: url(/assets/images/document.svg);
           background-position: center 40px;
           background-size: 100px;
           background-color: #222;

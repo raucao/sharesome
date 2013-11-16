@@ -5,10 +5,10 @@
   </ul>
 </nav>
 <main>
-  {{#if Sharesome.rsConnected}}
+  {{#if App.rsConnected}}
   {{outlet}}
   {{else}}
-    {{#if Sharesome.rsConnecting}}
+    {{#if App.rsConnecting}}
     <section class="content remotestorage-connecting">
       {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
       <p>Connecting<p>

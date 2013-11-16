@@ -3,14 +3,14 @@
   <p>Drag file here or tap anywhere</p>
 </div>
 <label class="file-picker">
-  {{view Sharesome.UploadFileSelectView contentBinding='content'}}
+  {{view 'upload-file-select' contentBinding='content'}}
 </label>
 </section>
 
 {{#if fileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
-      {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+      {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
       <p>Uploading<p>
     </section>
   {{else}}
@@ -27,7 +27,7 @@
         {{/if}}
         <p class="meta-data">
           <span class="name">{{name}}</span>
-          <span class="size">{{humanFileSize size}}</span>
+          <span class="size">{{human-file-size size}}</span>
         </p>
         <p class="actions">
           <button {{action submitFileUpload}} class="upload">Upload</button>
