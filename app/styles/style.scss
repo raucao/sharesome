@@ -147,13 +147,14 @@ main {
 
 .content.history {
   width: 90%;
+  padding-bottom: 4rem;
   ul {
     @include clearfix();
     list-style: none;
     li {
       position: relative;
       float: left;
-      margin: 0 2rem 2rem 0;
+      margin: 0 1rem 2rem 1rem;
       .image {
         position: relative;
         display: block;
@@ -221,6 +222,22 @@ main {
         background: rgba(34,34,34,0.8);
         @include border-radius(5px);
         @include clearfix;
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 640px) {
+  .content.history {
+    ul {
+      li {
+        position: relative;
+        float: left;
+        margin: 0 0.5rem 1rem 0.5rem;
+        .image {
+          width: 120px;
+          height: 120px;
+        }
       }
     }
   }

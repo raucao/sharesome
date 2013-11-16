@@ -19,6 +19,7 @@ nav {
   top: 0;
   bottom: 0;
   text-align: center;
+  z-index: 23;
   ul {
     width: 100%;
     li {
@@ -74,6 +75,7 @@ main {
   main {
     width: 100%;
     padding-left: 0;
+    margin-bottom: 4rem;
     section.content {
       padding: 4rem 0 0 0;
       &.welcome {
