@@ -47,6 +47,44 @@ main {
   }
 }
 
+@media screen and (max-width : 640px) {
+  nav {
+    position: fixed;
+    height: auto;
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    text-align: center;
+    ul {
+      width: 100%;
+      @include clearfix();
+      li {
+        display: inline;
+        float: left;
+        a {
+          display: block;
+          text-align: center;
+          width: 4rem;
+          line-height: 4rem;
+        }
+      }
+    }
+  }
+
+  main {
+    width: 100%;
+    padding-left: 0;
+    section.content {
+      padding: 4rem 0 0 0;
+      &.welcome {
+        padding: 4rem 0 0 0;
+        width: 90%;
+        max-width: 90%;
+      }
+    }
+  }
+}
+
 // UPLOAD
 
 #dropzone {
@@ -59,6 +97,11 @@ main {
   right: 0;
   margin: 0 0 0 4rem;
   border: none;
+
+  .hint {
+    background-position: center 140px;
+    padding-top: 260px;
+  }
 
   label.file-picker {
     position: absolute;
@@ -76,6 +119,30 @@ main {
       height: 100%;
       width: 100%;
       @include opacity(0);
+    }
+  }
+}
+
+@media screen and (max-width : 640px) {
+  #dropzone {
+    bottom: 4rem;
+    margin: 0;
+    .hint {
+      background-position: center 80px;
+      padding-top: 200px;
+      .draghere {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : 640px) {
+  #dropzone {
+    .hint {
+      .taptoupload {
+        display: none;
+      }
     }
   }
 }

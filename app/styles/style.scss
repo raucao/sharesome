@@ -54,6 +54,20 @@ main {
   }
 }
 
+@media screen and (max-width : 640px) {
+  .content.welcome {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
 #dropzone {
   &:hover {
     background-color: #fff;
@@ -63,9 +77,8 @@ main {
   }
 
   .hint {
-    background: url(/assets/images/upload.svg) center 140px;
+    background-image: url(/assets/images/upload.svg);
     background-repeat: no-repeat;
-    padding-top: 260px;
     color: #bbb;
   }
 }
