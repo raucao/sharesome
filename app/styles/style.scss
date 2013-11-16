@@ -137,6 +137,14 @@ main {
   }
 }
 
+@media screen and (max-width : 640px) {
+  .upload-preview {
+    .meta-data {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
 .content.history {
   width: 90%;
   ul {

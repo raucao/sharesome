@@ -152,6 +152,13 @@ main {
   max-height: 300px;
 }
 
+@media screen and (max-width : 640px) {
+  #preview-image {
+    max-width: 90%;
+    max-height: 200px;
+  }
+}
+
 // RS
 
 #remotestorage-connect {
