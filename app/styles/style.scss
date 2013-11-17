@@ -237,6 +237,10 @@ main {
         .image {
           width: 120px;
           height: 120px;
+          &.generic-file {
+            background-position: center 22px;
+            background-size: 48px;
+          }
         }
       }
     }
