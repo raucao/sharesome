@@ -12,7 +12,6 @@ var App = Ember.Application.extend({
   rsConnecting: false,
   isSmallScreen: function() {
     var result = window.innerWidth <= 640;
-    console.log('small:' + result);
     return result;
   }.property()
 });
