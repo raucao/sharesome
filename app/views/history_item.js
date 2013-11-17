@@ -1,4 +1,10 @@
-export default Ember.Component.extend({
+
+
+var HistoryItemView = Ember.View.extend({
+  tagName: 'li',
+
+  overlayIsVisible: false,
+
   isImage: function() {
     return this.get('url').match(/(jpg|jpeg|png|gif|webp)$/i);
   }.property('url'),
@@ -15,5 +21,21 @@ export default Ember.Component.extend({
 
   nameWithoutTimestamp: function() {
     return this.get('name').substr(12);
-  }.property('name')
+  }.property('name'),
+
+  // Events
+
+  didInsertElement: function() {
+    var name = this.get('name');
+  },
+
+  click: function() {
+    // TODO use App.isSmallScreen
+    if (window.innerWidth <= 640) {
+      var overlayIsVisible = this.get('overlayIsVisible');
+      this.set('overlayIsVisible', !overlayIsVisible);
+    }
+  }
 });
+
+export default HistoryItemView;

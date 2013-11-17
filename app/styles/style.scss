@@ -194,6 +194,9 @@ main {
         background: rgba(34,34,34,0.8);
         @include border-bottom-radius(5px);
         @include clearfix;
+        &.visible {
+          display: block;
+        }
         a {
           background: rgba(0,0,0,0.2);
           color: #eee;
@@ -209,9 +212,6 @@ main {
           }
         }
       }
-      &:hover .overlay {
-        display: block;
-      }
       .overlay-deleting {
         position: absolute;
         width: auto;
@@ -222,6 +222,18 @@ main {
         background: rgba(34,34,34,0.8);
         @include border-radius(5px);
         @include clearfix;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : 640px) {
+  .content.history {
+    ul {
+      li {
+        &:hover .overlay {
+          display: block;
+        }
       }
     }
   }

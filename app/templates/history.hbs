@@ -1,24 +1,32 @@
 <section class="content history">
   <ul>
-    {{#each}}
-    <li>
-      {{history-item url=url name=name}}
-      <div class="overlay">
-        <a class="share" {{action "share" url}}><i class="icon-export"></i></a>
-        <a class="zoom" {{action "zoom" url}}><i class="icon-eye"></i></a>
-        <a class="go-to-url" {{bindAttr href="url"}} target="_blank"><i class="icon-download"></i></a>
-        <a class="delete" {{action "remove" name}}><i class="icon-trash"></i></a>
-      </div>
-      {{#if isDeleting}}
-      <div class="overlay-deleting">
-        {{#if App.isSmallScreen}}
-        {{loading-spinner height=120 width=3 radius=20 color='#eee' top='auto' left='auto'}}
-        {{else}}
-        {{loading-spinner height=200 width=4 radius=20 color='#eee' top='auto' left='auto'}}
-        {{/if}}
-      </div>
+    {{#each item in controller}}
+    {{#view "history_item" urlBinding="item.url" nameBinding="item.name"}}
+      {{#if view.isImage}}
+        <div class="image" {{bind-attr style="view.itemStyle"}}></div>
+      {{else}}
+        <div class="image generic-file">
+          <p class="meta">{{view.nameWithoutTimestamp}}</p>
+        </div>
       {{/if}}
-    </li>
+
+      <div {{bind-attr class=":overlay view.overlayIsVisible:visible"}}>
+        <a class="share" {{action "share" view.url}}><i class="icon-export"></i></a>
+        <a class="zoom" {{action "zoom" view.url}}><i class="icon-eye"></i></a>
+        <a class="go-to-url" {{bindAttr href="view.url"}} target="_blank"><i class="icon-download"></i></a>
+        <a class="delete" {{action "remove" view.name}}><i class="icon-trash"></i></a>
+      </div>
+
+      {{#if item.isDeleting}}
+        <div class="overlay-deleting">
+          {{#if App.isSmallScreen}}
+          {{loading-spinner height=120 width=3 radius=20 color='#eee' top='auto' left='auto'}}
+          {{else}}
+          {{loading-spinner height=200 width=4 radius=20 color='#eee' top='auto' left='auto'}}
+          {{/if}}
+        </div>
+      {{/if}}
+    {{/view}}
     {{/each}}
   </ul>
 </section>
