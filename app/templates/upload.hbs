@@ -13,7 +13,11 @@
 {{#if fileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
+      {{#if App.isSmallScreen}}
+      {{loading-spinner height=200 width=4 radius=20 color='#222' top='auto' left='auto'}}
+      {{else}}
       {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+      {{/if}}
       <p>Uploading<p>
     </section>
   {{else}}
