@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+a {
+  outline: 0;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+}
+
 html, body {
   height: 100%;
 }
