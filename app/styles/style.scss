@@ -186,7 +186,7 @@ main {
       .overlay {
         display: none;
         position: absolute;
-        height: 3rem;
+        height: 50px;
         width: auto;
         bottom: 0;
         left: 0;
@@ -198,7 +198,7 @@ main {
           background: rgba(0,0,0,0.2);
           color: #eee;
           display: block;
-          float: right;
+          float: left;
           width: 50px;
           height: 50px;
           line-height: 50px;
@@ -240,6 +240,23 @@ main {
           &.generic-file {
             background-position: center 22px;
             background-size: 48px;
+          }
+        }
+        .overlay {
+          position: absolute;
+          width: auto;
+          height: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          @include border-bottom-radius(5px);
+          @include border-top-radius(5px);
+          a {
+            display: block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
           }
         }
       }

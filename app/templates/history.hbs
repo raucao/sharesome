@@ -4,10 +4,10 @@
     <li>
       {{history-item url=url name=name}}
       <div class="overlay">
-        <a class="delete" {{action "remove" name}}><i class="icon-trash"></i></a>
-        <a class="go-to-url" {{bindAttr href="url"}} target="_blank"><i class="icon-download"></i></a>
-        <a class="zoom" {{action "zoom" url}}><i class="icon-eye"></i></a>
         <a class="share" {{action "share" url}}><i class="icon-export"></i></a>
+        <a class="zoom" {{action "zoom" url}}><i class="icon-eye"></i></a>
+        <a class="go-to-url" {{bindAttr href="url"}} target="_blank"><i class="icon-download"></i></a>
+        <a class="delete" {{action "remove" name}}><i class="icon-trash"></i></a>
       </div>
       {{#if isDeleting}}
       <div class="overlay-deleting">
