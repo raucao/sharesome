@@ -230,7 +230,7 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
       var base64 = this._arrayBufferToBase64(data);
       base64 = 'data:'+mimeType+';base64,'+base64;
 
-      var thumbBase64 = this._createThumbnailFromBase64Image(base64, 180);
+      var thumbBase64 = this._createThumbnailFromBase64Image(base64, 200);
       thumbBase64 = thumbBase64.split(',')[1]; // remove type prefix
       var thumbData = this._base64DecToArr(thumbBase64);
 
