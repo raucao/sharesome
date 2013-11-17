@@ -9,7 +9,12 @@ var App = Ember.Application.extend({
   modulePrefix: 'appkit', // TODO: loaded via config
   Resolver: Resolver.default,
   rsConnected: false,
-  rsConnecting: false
+  rsConnecting: false,
+  isSmallScreen: function() {
+    var result = window.innerWidth <= 640;
+    console.log('small:' + result);
+    return result;
+  }.property()
 });
 
 Ember.RSVP.configure('onerror', function(error) {
