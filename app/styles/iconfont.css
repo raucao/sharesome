@@ -35,6 +35,15 @@
 .icon-info:before {
 	content: "\e603";
 }
-.icon-info:before {
+.icon-info-alt:before {
 	content: "\e604";
+}
+.icon-eye:before {
+  content: "\e605";
+}
+.icon-resize-enlarge:before {
+  content: "\e606";
+}
+.icon-download:before {
+	content: "\e607";
 }

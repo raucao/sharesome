@@ -199,9 +199,9 @@ main {
           color: #eee;
           display: block;
           float: right;
-          width: 3rem;
-          height: 3rem;
-          line-height: 3rem;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
           text-decoration: none;
           cursor: pointer;
           &:hover {
@@ -247,11 +247,3 @@ main {
   }
 }
 
-.vex-content {
-  input[type=text] {
-    width: 100%;
-    padding: 5px;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 16px;
-  }
-}

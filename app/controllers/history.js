@@ -32,6 +32,10 @@ var HistoryController = Ember.ArrayController.extend({
 
   actions: {
 
+    zoom: function(url) {
+      window.vex.dialog.alert("<img src='"+url+"' class='zoomed'>");
+    },
+
     share: function(url) {
       window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
       $('.vex-content input').first().select();

@@ -154,7 +154,7 @@ main {
   max-height: 300px;
 }
 
-@media screen and (max-width : 640px) {
+@media screen and (max-width: 640px) {
   #preview-image {
     max-width: 90%;
     max-height: 200px;
@@ -168,5 +168,51 @@ main {
     position: fixed;
     top: 0.5rem;
     right: 0.8rem;
+  }
+}
+
+// DIALOGS
+
+.vex.vex-theme-flat-attack {
+  .vex-content {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    // font-weight: 200;
+    width: auto;
+    max-width: 600px;
+
+    input[type=text] {
+      width: 100%;
+      padding: 5px;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 16px;
+    }
+    img.zoomed {
+      max-width: 100%;
+      max-height: 360px;
+    }
+  }
+  .vex-dialog-button {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .vex.vex-theme-flat-attack {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    .vex-content {
+      img.zoomed {
+        max-height: 300px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .vex.vex-theme-flat-attack {
+    .vex-content {
+      width: auto;
+      max-width: 96%;
+    }
   }
 }
