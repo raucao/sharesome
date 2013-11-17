@@ -33,7 +33,14 @@ var HistoryController = Ember.ArrayController.extend({
   actions: {
 
     zoom: function(url) {
-      window.vex.dialog.alert("<img src='"+url+"' class='zoomed'>");
+      var isImage = url.match(/(jpg|jpeg|png|gif|webp)$/i);
+      var dialogContent;
+      if (isImage) {
+        dialogContent = "<img src='"+url+"' class='zoomed'>";
+      } else {
+        dialogContent = "No preview available.";
+      }
+      window.vex.dialog.alert(dialogContent);
     },
 
     share: function(url) {
