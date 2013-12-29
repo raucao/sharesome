@@ -2,7 +2,7 @@
  * File: Shares
  *
  * Maintainer: - Sebastian Kippe <sebastian@kip.pe>
- * Version: -    0.2.0
+ * Version: -    0.3.0
  *
  * Manages sharing of files. All shares are stored with a timestamp prefix.
  * For images, thumbnails are created and stored in a subdirectory.
@@ -65,10 +65,11 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
       return publicClient.getListing('')
         .then(function(listing) {
           if (listing) {
-            listing = self._removeFromArray(listing, 'thumbnails/');
-            return listing.map(decodeURIComponent);
+            // TODO removing dir keys should be an option for getListing itself
+            listing = self._removeDirectoryKeysFromListing(listing);
+            return listing;
           } else {
-            return [];
+            return {};
           }
         });
     },
@@ -237,16 +238,14 @@ RemoteStorage.defineModule('shares', function(privateClient, publicClient) {
       publicClient.storeFile('image/png', 'thumbnails/'+name+'.png', thumbData);
     },
 
-    //TODO common behaviour
-    _removeFromArray: function (arr) {
-      var what, a = arguments, L = a.length, ax;
-      while (L > 1 && arr.length) {
-        what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
-          arr.splice(ax, 1);
+    _removeDirectoryKeysFromListing: function(listing) {
+      Object.keys(listing).forEach(function(key){
+        console.log(key);
+        if (key.match(/\/$/)) {
+          delete listing[key];
         }
-      }
-      return arr;
+      });
+      return listing;
     }
 
   };

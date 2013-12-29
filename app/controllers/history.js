@@ -9,8 +9,8 @@ var HistoryController = Ember.ArrayController.extend({
     var self = this;
     console.log('loading items');
 
-    remoteStorage.shares.list().then(function(filenames){
-      $.each(filenames, function(index, filename) {
+    remoteStorage.shares.list().then(function(listing){
+      Object.keys(listing).forEach(function(filename){
         var item = Ember.Object.create({
           name: filename,
           url: remoteStorage.shares.getFileURL(filename),
