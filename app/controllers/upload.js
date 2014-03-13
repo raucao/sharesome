@@ -16,6 +16,39 @@ var UploadController = Ember.ObjectController.extend({
     }
   }.property('content.type'),
 
+  handleInputFile: function(inputFile) {
+    var self = this;
+
+    this.setProperties({
+      name: inputFile.name,
+      type: inputFile.type,
+      size: inputFile.size,
+      fileToUpload: true
+    });
+
+    if (inputFile.type.match('image.*')) {
+      var fileReaderBase64 = new FileReader();
+
+      fileReaderBase64.onload = (function(file) {
+        return function(e) {
+          self.set('base64', this.result);
+        };
+      })(inputFile);
+
+      fileReaderBase64.readAsDataURL(inputFile);
+    }
+
+    var fileReaderBinary = new FileReader();
+
+    fileReaderBinary.onload = (function(file) {
+      return function(e) {
+        self.set('binary', this.result);
+      };
+    })(inputFile);
+
+    fileReaderBinary.readAsArrayBuffer(inputFile);
+  },
+
   actions: {
     cancelFileUpload: function() {
       this.set('fileToUpload', false);
