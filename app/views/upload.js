@@ -4,6 +4,7 @@ var UploadView = Ember.View.extend({
   classNameBindings: ['hasFileToUpload'],
 
   didInsertElement: function() {
+    var self = this;
     this.$('#dropzone').bind('dragenter', function() {
       $(this).addClass('drag-active');
       return false;
@@ -18,6 +19,13 @@ var UploadView = Ember.View.extend({
     });
     this.$('#dropzone').bind('drop', function(e) {
       $(this).removeClass('drag-active');
+      e.preventDefault();
+      if (e.stopPropagation) {
+        e.stopPropagation();
+      }
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        self.controller.handleInputFile(e.dataTransfer.files[0]);
+      }
     });
   }
 });
