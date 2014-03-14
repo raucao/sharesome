@@ -8,6 +8,7 @@ var UploadFileSelectView = Ember.TextField.extend({
     if (input.files && input.files[0]) {
       uploadController.handleInputFile( input.files[0] );
     }
+    this.set('value', null);
   }
 });
 
