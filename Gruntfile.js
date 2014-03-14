@@ -56,10 +56,9 @@ module.exports = function(grunt) {
     init: false
   });
   grunt.loadTasks('tasks'); // Loads tasks in `tasks/` folder
+  grunt.loadNpmTasks('grunt-build-control');
 
   config.env = process.env;
-
-  
 
 
   // App Kit's Main Tasks

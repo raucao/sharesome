@@ -45,6 +45,7 @@
     "karma-qunit": "~0.0.3",
     "karma-coverage": "~0.0.3",
     "karma-phantomjs-launcher": "~0.0.2",
-    "grunt-contrib-compass": "~0.6.0"
+    "grunt-contrib-compass": "~0.6.0",
+    "grunt-build-control": "~0.1.2"
   }
 }
