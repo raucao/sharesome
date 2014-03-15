@@ -1,6 +1,4 @@
 #!/bin/sh
 
 grunt dist
-git add --all
-git commit -m "Update build - `date -u`"
-git subtree push --prefix dist 5apps master
+grunt buildcontrol:production
