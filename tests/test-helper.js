@@ -4,3 +4,10 @@ import {
 } from 'ember-qunit';
 
 setResolver(resolver);
+
+window.vex = { defaultOptions: {} };
+window.RemoteStorage = {
+  WireClient: {},
+  log: () => { return true; }
+};
+window.remoteStorage = {};

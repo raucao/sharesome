@@ -5,6 +5,9 @@ moduleFor('service:remote-storage', 'Unit | Service | remote storage', {
   // needs: ['service:foo']
 });
 
+window.remoteStorage.access        = { claim() { return true; } };
+window.remoteStorage.displayWidget = () => { return true; };
+window.remoteStorage.on            = () => { return true; };
 // Replace this with your real tests.
 test('it exists', function(assert) {
   let service = this.subject();

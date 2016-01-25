@@ -6,11 +6,9 @@ moduleForComponent('history-item', 'Integration | Component | history item', {
   integration: true
 });
 
-window.remoteStorage = {
-  shares: {
-    getThumbnailURL(name) {
-      return 'https://storage.kosmos.org/public/shares/thumbnails/'+name;
-    }
+window.remoteStorage.shares = {
+  getThumbnailURL(name) {
+    return 'https://storage.kosmos.org/public/shares/thumbnails/'+name;
   }
 };
 
