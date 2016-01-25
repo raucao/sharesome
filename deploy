@@ -1,4 +1,0 @@
-#!/bin/sh
-
-grunt dist
-grunt buildcontrol:production

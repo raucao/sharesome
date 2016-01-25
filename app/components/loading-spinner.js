@@ -1,6 +1,8 @@
+import Ember from 'ember';
+
 export default Ember.Component.extend({
 
-  didInsertElement: function() {
+  startSpinner: function() {
     var el = this.$('.spinner-wrapper');
     el.css('height', this.get('height')+'px');
 
@@ -24,6 +26,6 @@ export default Ember.Component.extend({
     };
 
     el.spin(opts);
-  }
+  }.on('didInsertElement')
 
 });

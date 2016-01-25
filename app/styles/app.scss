@@ -1,0 +1,280 @@
+@import "bourbon/bourbon";
+@import "layout";
+@import "iconfont";
+
+html, body {
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  background-color: #eee;
+}
+
+a:active {
+  outline: none;
+}
+
+nav {
+  background-color: #222;
+  color: #ccc;
+  a {
+    color: #eee;
+    text-decoration: none;
+    &:hover, &.active {
+      background: #333;
+    }
+    &:active {
+      background: #555;
+    }
+  }
+  #logo {
+    font-size: 30px;
+    a {
+      color: yellow;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+  li#history a {
+    font-size: 24px;
+  }
+}
+
+main {
+  background-color: #eee;
+  color: #222;
+}
+
+.content.welcome {
+  font-size: 1.4rem;
+  line-height: 1.4em;
+  h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2.8rem;
+  }
+  p {
+    margin-bottom: 1.4rem;
+  }
+}
+
+@media screen and (max-width : 640px) {
+  .content.welcome {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+#dropzone {
+  &:hover {
+    background-color: #fff;
+  }
+  &.drag-active {
+    background-color: #fff;
+  }
+
+  .hint {
+    background-image: url(/assets/images/upload.svg);
+    background-repeat: no-repeat;
+    color: #bbb;
+  }
+}
+
+.has-file-to-upload #dropzone {
+  display: none;
+}
+
+.upload-preview {
+  .image, #file-preview {
+    margin-bottom: 1rem;
+  }
+  #file-preview:not(.image) {
+    height: 200px;
+    padding-top: 90px;
+    color: #ccc;
+  }
+  .meta-data {
+    margin-bottom: 2rem;
+    span {
+      display: block;
+      margin: 0 0 0.5rem 0;
+      &.size {
+        color: #888;
+      }
+    }
+  }
+  button.upload, button.cancel {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    text-transform: uppercase;
+  }
+  button.upload {
+    background: #222;
+    color: #eee;
+    &:hover, &.active {
+      background: #333;
+    }
+    &:active {
+      background: #555;
+    }
+  }
+
+  button.cancel {
+    background: #ccc;
+    color: #555;
+    &:hover, &.active {
+      background: #bbb;
+    }
+    &:active {
+      background: #aaa;
+    }
+  }
+}
+
+@media screen and (max-width : 640px) {
+  .upload-preview {
+    .meta-data {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.content.history {
+  width: 90%;
+  padding-bottom: 4rem;
+  ul {
+    @include clearfix();
+    list-style: none;
+    li {
+      position: relative;
+      float: left;
+      margin: 0 1rem 2rem 1rem;
+      .image {
+        position: relative;
+        display: block;
+        width: 200px;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 5px;
+        &.generic-file {
+          background-image: url(/assets/images/document.svg);
+          background-position: center 40px;
+          background-size: 100px;
+          background-color: #222;
+          .meta {
+            position: absolute;
+            width: auto;
+            bottom: 1.2rem;
+            left: 1.2rem;
+            right: 1.2rem;
+            color: #aaa;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+      .overlay {
+        display: none;
+        position: absolute;
+        height: 50px;
+        width: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(34,34,34,0.8);
+        @include border-bottom-radius(5px);
+        @include clearfix;
+        &.visible {
+          display: block;
+        }
+        a {
+          background: rgba(0,0,0,0.2);
+          color: #eee;
+          display: block;
+          float: left;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-decoration: none;
+          cursor: pointer;
+          &:hover {
+            background: rgba(255,255,255,0.2);
+          }
+        }
+      }
+      .overlay-deleting {
+        position: absolute;
+        width: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(34,34,34,0.8);
+        border-radius: 5px;
+        @include clearfix;
+      }
+    }
+  }
+}
+
+@media screen and (min-width : 640px) {
+  .content.history {
+    ul {
+      li {
+        &:hover .overlay {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width : 640px) {
+  .content.history {
+    ul {
+      li {
+        position: relative;
+        float: left;
+        margin: 0 0.5rem 1rem 0.5rem;
+        .image {
+          width: 120px;
+          height: 120px;
+          &.generic-file {
+            background-position: center 22px;
+            background-size: 48px;
+          }
+        }
+        .overlay {
+          position: absolute;
+          width: auto;
+          height: auto;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          @include border-bottom-radius(5px);
+          @include border-top-radius(5px);
+          a {
+            display: block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+

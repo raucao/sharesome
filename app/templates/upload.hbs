@@ -6,11 +6,11 @@
   </p>
 </div>
 <label class="file-picker">
-  {{view 'upload-file-select' contentBinding='content'}}
+  {{view 'upload-file-select' contentBinding='file'}}
 </label>
 </section>
 
-{{#if fileToUpload}}
+{{#if hasFileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
       {{#if App.isSmallScreen}}
@@ -18,14 +18,14 @@
       {{else}}
       {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
       {{/if}}
-      <p>Uploading<p>
+      <p>Uploading</p>
     </section>
   {{else}}
     <section class="content upload-preview">
       <div class="upload-preview">
         {{#if fileIsImage}}
         <div id="file-preview" class="image">
-          <img id="preview-image" {{bind-attr src=base64}}>
+          <img id="preview-image" {{bind-attr src=file.base64}}>
         </div>
         {{else}}
         <div id="file-preview" {{bind-attr class="simpleFileType"}}>
@@ -33,12 +33,12 @@
         </div>
         {{/if}}
         <p class="meta-data">
-          <span class="name">{{name}}</span>
-          <span class="size">{{human-file-size size}}</span>
+          <span class="name">{{file.name}}</span>
+          <span class="size">{{human-file-size file.size}}</span>
         </p>
         <p class="actions">
-          <button {{action submitFileUpload}} class="upload">Upload</button>
-          <button {{action cancelFileUpload}} class="cancel">Cancel</button>
+          <button {{action "submitFileUpload"}} class="upload">Upload</button>
+          <button {{action "cancelFileUpload"}} class="cancel">Cancel</button>
         </p>
       </div>
     </section>

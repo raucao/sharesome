@@ -5,14 +5,14 @@
   </ul>
 </nav>
 <main>
-  {{#if App.rsConnected}}
-  {{outlet}}
+  {{#if rs.connected}}
+    {{outlet}}
   {{else}}
-    {{#if App.rsConnecting}}
-    <section class="content remotestorage-connecting">
-      {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
-      <p>Connecting<p>
-    </section>
+    {{#if rs.connecting}}
+      <section class="content remotestorage-connecting">
+        {{spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+        <p>Connecting</p>
+      </section>
     {{else}}
       {{partial "welcome"}}
     {{/if}}

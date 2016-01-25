@@ -1,14 +1,12 @@
-var Router = Ember.Router.extend(); // ensure we don't share routes between all Router instances
+import Ember from 'ember';
+import config from './config/environment';
 
-Router.map(function() {
-  this.route('component-test');
-  this.route('helper-test');
-
-  this.resource('history', { path: '/history' });
+const Router = Ember.Router.extend({
+  location: config.locationType
 });
 
-Router.reopen({
-  location: 'history'
+Router.map(function() {
+  this.resource('history', { path: '/history' });
 });
 
 export default Router;

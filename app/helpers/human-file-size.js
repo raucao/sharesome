@@ -1,4 +1,6 @@
-export default Ember.Handlebars.makeBoundHelper(function(fileSizeInBytes, options) {
+import Ember from 'ember';
+
+export default Ember.Handlebars.makeBoundHelper(function(fileSizeInBytes/*, options*/) {
   var i = -1;
   var byteUnits = [' KB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB'];
   do {

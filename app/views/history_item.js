@@ -1,6 +1,7 @@
+import Ember from 'ember';
 
+export default Ember.View.extend({
 
-var HistoryItemView = Ember.View.extend({
   tagName: 'li',
 
   overlayIsVisible: false,
@@ -25,9 +26,9 @@ var HistoryItemView = Ember.View.extend({
 
   // Events
 
-  didInsertElement: function() {
-    var name = this.get('name');
-  },
+  // didInsertElement: function() {
+  //   var name = this.get('name');
+  // },
 
   click: function() {
     // TODO use App.isSmallScreen
@@ -37,5 +38,3 @@ var HistoryItemView = Ember.View.extend({
     }
   }
 });
-
-export default HistoryItemView;

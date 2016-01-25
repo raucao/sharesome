@@ -1,37 +1,46 @@
-var UploadController = Ember.ObjectController.extend({
-  content: {},
-  fileToUpload: false,
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+
+  file: null,
   isUploading: false,
 
+  hasFileToUpload: function() {
+    return this.get('file') !== null;
+  }.property('file'),
+
   fileIsImage: function() {
-    return this.get('content.type').match('image.*');
-  }.property('content.type'),
+    return this.get('file.type').match('image.*');
+  }.property('file'),
 
   simpleFileType: function() {
-    var type = this.get('content.type');
+    var type = this.get('file.type');
     if (type && typeof type !== 'undefined' && type !== '') {
       return type.replace('/','-');
     } else {
       return "unkown";
     }
-  }.property('content.type'),
+  }.property('file'),
 
   handleInputFile: function(inputFile) {
     var self = this;
 
-    this.setProperties({
-      name: inputFile.name,
-      type: inputFile.type,
-      size: inputFile.size,
-      fileToUpload: true
+    let file = Ember.Object.create({
+      'name': inputFile.name,
+      'type': inputFile.type,
+      'size': inputFile.size,
+      'binary': null,
+      'base64': null
     });
+
+    this.set('file', file);
 
     if (inputFile.type.match('image.*')) {
       var fileReaderBase64 = new FileReader();
 
-      fileReaderBase64.onload = (function(file) {
-        return function(e) {
-          self.set('base64', this.result);
+      fileReaderBase64.onload = (function(/*file*/) {
+        return function(/*e*/) {
+          self.get('file').set('base64', this.result);
         };
       })(inputFile);
 
@@ -40,9 +49,9 @@ var UploadController = Ember.ObjectController.extend({
 
     var fileReaderBinary = new FileReader();
 
-    fileReaderBinary.onload = (function(file) {
-      return function(e) {
-        self.set('binary', this.result);
+    fileReaderBinary.onload = (function(/*file*/) {
+      return function(/*e*/) {
+        self.get('file').set('binary', this.result);
       };
     })(inputFile);
 
@@ -50,32 +59,27 @@ var UploadController = Ember.ObjectController.extend({
   },
 
   actions: {
-    cancelFileUpload: function() {
-      this.set('fileToUpload', false);
-      this.set('content', {});
+
+    cancelFileUpload() {
+      this.set('file', null);
     },
 
-    submitFileUpload: function() {
-      var self = this;
-      var file = self.get('content');
-      self.set('isUploading', true);
+    submitFileUpload() {
+      let file = this.get('file');
+      this.set('isUploading', true);
 
-      remoteStorage.shares.storeFile(file.type, file.name, file.binary).then(
-        function(url){
-          self.setProperties({
-            fileToUpload: false,
-            isUploading: false,
-            content: {}
-          });
-          window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
-          $('.vex-content input').first().select();
-        }, function(error) {
-          self.set('isUploading', false);
-          window.vex.dialog.alert('Something bad happened during upload.<br />Please try again.');
-          console.log(error);
+      remoteStorage.shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
+        this.setProperties({
+          file: null,
+          isUploading: false
         });
+        window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
+        Ember.$('.vex-content input').first().select();
+      }, error => {
+        this.set('isUploading', false);
+        window.vex.dialog.alert('Something bad happened during upload.<br />Please try again.');
+        console.log(error);
+      });
     }
   }
 });
-
-export default UploadController;

@@ -1,25 +1,9 @@
+import Ember from 'ember';
+
 var HistoryController = Ember.ArrayController.extend({
   content        : [],
   sortProperties : ['name'],
   sortAscending  : false,
-
-  loadItems: function() {
-    this.set('content', []); //TODO this shouldn't be loaded on every insert
-
-    var self = this;
-    console.log('loading items');
-
-    remoteStorage.shares.list().then(function(listing){
-      Object.keys(listing).forEach(function(filename){
-        var item = Ember.Object.create({
-          name: filename,
-          url: remoteStorage.shares.getFileURL(filename),
-          isDeleting: false
-        });
-        self.pushObject(item);
-      });
-    });
-  },
 
   itemCount: function() {
     return this.get('content').length;
@@ -45,7 +29,7 @@ var HistoryController = Ember.ArrayController.extend({
 
     share: function(url) {
       window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
-      $('.vex-content input').first().select();
+      Ember.$('.vex-content input').first().select();
     },
 
     remove: function(name) {

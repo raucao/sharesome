@@ -1,6 +1,6 @@
 <section class="content history">
   <ul>
-    {{#each item in controller}}
+    {{#each model as |item|}}
     {{#view "history_item" urlBinding="item.url" nameBinding="item.name"}}
       {{#if view.isImage}}
         <div class="image" {{bind-attr style="view.itemStyle"}}></div>
