@@ -11,37 +11,12 @@ export default Ember.Controller.extend({
 
   actions: {
 
-    zoom: function(url) {
-      let dialogContent;
-      let isImage = url.match(/(jpg|jpeg|png|gif|webp)$/i);
-
-      if (isImage) {
-        dialogContent = "<img src='"+url+"' class='zoomed'>";
-      } else {
-        dialogContent = "No preview available.";
-      }
-
-      window.vex.dialog.alert(dialogContent);
-    },
-
-    share: function(url) {
-      window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+url+"'>");
-      Ember.$('.vex-content input').first().select();
-    },
-
-    remove: function(name) {
-      let item = this.get('model').findBy('name', name);
-      item.set('isDeleting', true);
-
-      remoteStorage.shares.remove(name).then(
-        () => this.get('model').removeObject(item),
-        error => {
-          item.set('isDeleting', false);
-          window.alert("Couldn't remove item. Please try again. Sorry!");
-          console.log(error);
-        }
-      );
+    removeItem(item) {
+      console.log('CALLED FROM CONTROLLER YO');
+      this.get('model').removeObject(item);
+      return true;
     }
 
   }
+
 });
