@@ -1,29 +1,26 @@
 import Ember from 'ember';
 
-var HistoryController = Ember.ArrayController.extend({
-  content        : [],
-  sortProperties : ['name'],
-  sortAscending  : false,
+export default Ember.Controller.extend({
+
+  sortProperties: ['name:desc'],
+  sortedModel: Ember.computed.sort('model', 'sortProperties'),
 
   itemCount: function() {
-    return this.get('content').length;
-  }.property('content.@each'),
-
-  removeItem: function(propName, value) {
-    var obj = this.findProperty(propName, value);
-    this.removeObject(obj);
-  },
+    return this.get('model').length;
+  }.property('model.[]'),
 
   actions: {
 
     zoom: function(url) {
-      var isImage = url.match(/(jpg|jpeg|png|gif|webp)$/i);
-      var dialogContent;
+      let dialogContent;
+      let isImage = url.match(/(jpg|jpeg|png|gif|webp)$/i);
+
       if (isImage) {
         dialogContent = "<img src='"+url+"' class='zoomed'>";
       } else {
         dialogContent = "No preview available.";
       }
+
       window.vex.dialog.alert(dialogContent);
     },
 
@@ -33,23 +30,18 @@ var HistoryController = Ember.ArrayController.extend({
     },
 
     remove: function(name) {
-      var self = this;
-      var item = this.findProperty('name', name);
+      let item = this.get('model').findBy('name', name);
       item.set('isDeleting', true);
 
       remoteStorage.shares.remove(name).then(
-        function() {
-          self.removeObject(item);
-        },
-        function(e) {
+        () => this.get('model').removeObject(item),
+        error => {
           item.set('isDeleting', false);
           window.alert("Couldn't remove item. Please try again. Sorry!");
-          console.log(e);
+          console.log(error);
         }
       );
     }
 
   }
 });
-
-export default HistoryController;
