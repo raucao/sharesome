@@ -1,5 +1,5 @@
 {
-  "name": "Sharesome",
+  "name": "sharesome",
   "version": "1.0.0",
   "description": "Share files from your remote storage",
   "directories": {
@@ -7,10 +7,12 @@
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build",
+    "build": "npm run clean:dist && ember build",
+    "build:dist": "npm run clean:dist && ember build -prod",
     "start": "ember server",
     "test": "ember test",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "clean:dist": "rm -rf dist/*"
   },
   "repository": "https://github.com/skddc/sharesome",
   "engines": {

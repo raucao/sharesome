@@ -1,0 +1,16 @@
+#!/bin/sh
+set -ex
+
+git up
+npm run build:dist
+git checkout production
+rm *.png *.html *.xml *.txt
+rm -rf assets/*
+cp -r dist/* .
+git add --all
+git commit -m "Update static build - `date -u`"
+# Setting up the remote:
+# `git remote add 5apps git@5apps.com:basti_sharesome.git`
+git push -f 5apps production:master
+git push origin production
+git checkout master
