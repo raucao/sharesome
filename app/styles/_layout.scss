@@ -93,7 +93,7 @@ main {
 
 // UPLOAD
 
-#dropzone {
+section.file-dropzone {
   display: block;
   position:absolute;
   height:auto;
@@ -130,7 +130,7 @@ main {
 }
 
 @media screen and (max-width : 640px) {
-  #dropzone {
+  section.file-dropzone {
     bottom: 4rem;
     margin: 0;
     .hint {
@@ -144,7 +144,7 @@ main {
 }
 
 @media screen and (min-width : 640px) {
-  #dropzone {
+  section.file-dropzone {
     .hint {
       .taptoupload {
         display: none;

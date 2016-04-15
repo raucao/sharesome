@@ -70,7 +70,7 @@ main {
   }
 }
 
-#dropzone {
+section.file-dropzone {
   &:hover {
     background-color: #fff;
   }
@@ -85,7 +85,7 @@ main {
   }
 }
 
-.has-file-to-upload #dropzone {
+section.file-dropzone.has-file-to-upload {
   display: none;
 }
 
