@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   }.property('file'),
 
   simpleFileType: function() {
-    var type = this.get('file.type');
+    let type = this.get('file.type');
     if (type && typeof type !== 'undefined' && type !== '') {
       return type.replace('/','-');
     } else {
@@ -22,43 +22,43 @@ export default Ember.Controller.extend({
     }
   }.property('file'),
 
-  handleInputFile: function(inputFile) {
-    var self = this;
+  actions: {
 
-    let file = Ember.Object.create({
-      'name': inputFile.name,
-      'type': inputFile.type,
-      'size': inputFile.size,
-      'binary': null,
-      'base64': null
-    });
+    readInputFile: function(inputFile) {
+      let self = this;
 
-    this.set('file', file);
+      let file = Ember.Object.create({
+        'name': inputFile.name,
+        'type': inputFile.type,
+        'size': inputFile.size,
+        'binary': null,
+        'base64': null
+      });
 
-    if (inputFile.type.match('image.*')) {
-      var fileReaderBase64 = new FileReader();
+      this.set('file', file);
 
-      fileReaderBase64.onload = (function(/*file*/) {
+      if (inputFile.type.match('image.*')) {
+        let fileReaderBase64 = new FileReader();
+
+        fileReaderBase64.onload = (function(/*file*/) {
+          return function(/*e*/) {
+            self.get('file').set('base64', this.result);
+          };
+        })(inputFile);
+
+        fileReaderBase64.readAsDataURL(inputFile);
+      }
+
+      let fileReaderBinary = new FileReader();
+
+      fileReaderBinary.onload = (function(/*file*/) {
         return function(/*e*/) {
-          self.get('file').set('base64', this.result);
+          self.get('file').set('binary', this.result);
         };
       })(inputFile);
 
-      fileReaderBase64.readAsDataURL(inputFile);
-    }
-
-    var fileReaderBinary = new FileReader();
-
-    fileReaderBinary.onload = (function(/*file*/) {
-      return function(/*e*/) {
-        self.get('file').set('binary', this.result);
-      };
-    })(inputFile);
-
-    fileReaderBinary.readAsArrayBuffer(inputFile);
-  },
-
-  actions: {
+      fileReaderBinary.readAsArrayBuffer(inputFile);
+    },
 
     cancelFileUpload() {
       this.set('file', null);
