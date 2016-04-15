@@ -1917,7 +1917,7 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("sharesome/app")["default"].create({"name":"Sharesome","version":"1.0.0+f2a00799"});
+  require("sharesome/app")["default"].create({"name":"Sharesome","version":"1.0.0+82ab957f"});
 }
 
 /* jshint ignore:end */
