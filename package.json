@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "npm run clean:dist && ember build",
-    "build:dist": "npm run clean:dist && ember build -prod",
+    "build:dist": "npm run clean:dist && ember build -prod && bash scripts/update-versionfile",
     "start": "ember server",
     "test": "ember test",
     "postinstall": "bower install",
