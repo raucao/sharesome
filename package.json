@@ -1,6 +1,6 @@
 {
   "name": "sharesome",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Share files from your remote storage",
   "directories": {
     "doc": "doc",
