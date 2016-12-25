@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
 export default Ember.Component.extend({
 
@@ -39,8 +40,7 @@ export default Ember.Component.extend({
   actions: {
 
     share: function() {
-      window.vex.dialog.alert("Direct URL:<p><input type='text' value='"+this.get('url')+"'>");
-      Ember.$('.vex-content input').first().select();
+      showUrlDialog(this.get('url'));
     },
 
     zoom: function() {
