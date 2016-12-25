@@ -16,10 +16,10 @@
       <div class="upload-preview">
         {{#if fileIsImage}}
         <div id="file-preview" class="image">
-          <img id="preview-image" {{bind-attr src=file.base64}}>
+          <img id="preview-image" src={{file.base64}}>
         </div>
         {{else}}
-        <div id="file-preview" {{bind-attr class="simpleFileType"}}>
+        <div id="file-preview" class={{"simpleFileType"}}>
           <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
         </div>
         {{/if}}
