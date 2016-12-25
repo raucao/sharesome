@@ -1,7 +1,11 @@
 @import "bourbon/bourbon";
 @import "layout";
+@import "buttons";
 @import "iconfont";
 @import "loading";
+
+:focus { outline:none; }
+::-moz-focus-inner { border: 0; }
 
 html, body {
   font-size: 16px;
