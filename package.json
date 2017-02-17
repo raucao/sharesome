@@ -2,10 +2,15 @@
   "name": "sharesome",
   "version": "1.1.0",
   "description": "Share files from your remote storage",
+  "license": "AGPL-3.0",
+  "authors": [
+    "Râu Cao"
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
+  "repository": "https://github.com/skddc/sharesome",
   "scripts": {
     "build": "npm run clean:dist && ember build",
     "build:dist": "npm run clean:dist && ember build -prod && bash scripts/update-versionfile",
@@ -15,33 +20,34 @@
     "postinstall": "bower install",
     "clean:dist": "rm -rf dist/*"
   },
-  "repository": "https://github.com/skddc/sharesome",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "broccoli-asset-rev": "^2.4.5",
+    "ember-ajax": "^2.4.1",
+    "ember-cli": "2.11.1",
+    "ember-cli-app-version": "^2.0.0",
+    "ember-cli-babel": "^5.1.7",
+    "ember-cli-dependency-checker": "^1.3.0",
+    "ember-cli-htmlbars": "^1.1.1",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-jshint": "^2.0.1",
+    "ember-cli-qunit": "^3.0.1",
+    "ember-cli-release": "^0.2.9",
+    "ember-cli-sass": "^5.2.1",
+    "ember-cli-shims": "^1.0.2",
+    "ember-cli-sri": "^2.1.0",
+    "ember-cli-test-loader": "^1.1.0",
+    "ember-cli-uglify": "^1.2.0",
+    "ember-export-application-global": "^1.0.5",
+    "ember-load-initializers": "^0.6.0",
+    "ember-moment": "^6.0.0",
+    "ember-resolver": "^2.0.3",
+    "ember-source": "~2.11.0",
+    "loader.js": "^4.0.10"
+  },
   "engines": {
     "node": ">=5.0.0",
     "npm": ">=3.0.0"
-  },
-  "authors": [
-    "Râu Cao"
-  ],
-  "license": "AGPL-3.0",
-  "devDependencies": {
-    "bower": "^1.7.7",
-    "broccoli-asset-rev": "^2.2.0",
-    "ember-cli": "1.13.15",
-    "ember-cli-app-version": "^1.0.0",
-    "ember-cli-babel": "^5.1.5",
-    "ember-cli-content-security-policy": "0.4.0",
-    "ember-cli-dependency-checker": "^1.1.0",
-    "ember-cli-htmlbars": "^1.0.1",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.1",
-    "ember-cli-ic-ajax": "0.2.4",
-    "ember-cli-inject-live-reload": "^1.3.1",
-    "ember-cli-qunit": "^1.0.4",
-    "ember-cli-release": "0.2.8",
-    "ember-cli-sass": "^5.2.1",
-    "ember-cli-uglify": "^1.2.0",
-    "ember-disable-proxy-controllers": "^1.0.1",
-    "ember-export-application-global": "^1.0.4",
-    "ember-moment": "^6.0.0"
   }
 }
