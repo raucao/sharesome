@@ -12,9 +12,7 @@ export default Ember.Controller.extend({
   actions: {
 
     removeItem(item) {
-      console.log('CALLED FROM CONTROLLER YO');
       this.get('model').removeObject(item);
-      return true;
     }
 
   }

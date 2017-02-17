@@ -6,7 +6,7 @@
   </div>
 {{/if}}
 
-<div {{bind-attr class=":overlay overlayIsVisible:visible"}}>
+<div class="overlay {{if overlayIsVisible 'visible'}}">
   <a class="share" {{action "share"}}><i class="icon-export"></i></a>
   <a class="zoom" {{action "zoom"}}><i class="icon-eye"></i></a>
   <a class="go-to-url" href={{url}} target="_blank"><i class="icon-download"></i></a>

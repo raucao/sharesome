@@ -1,13 +1,20 @@
 import Ember from 'ember';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
-export default Ember.Component.extend({
+const {
+  Component,
+  computed: {
+    alias
+  }
+} = Ember;
+
+export default Component.extend({
 
   tagName: 'li',
 
   overlayIsVisible: false,
-  urlBinding: 'item.url',
-  nameBinding: 'item.name',
+  url: alias('item.url'),
+  name: alias('item.name'),
 
   isImage: function() {
     return this.get('url').match(/(jpg|jpeg|png|gif|webp)$/i);
@@ -19,7 +26,7 @@ export default Ember.Component.extend({
 
   itemStyle: function() {
     if (this.get('isImage')) {
-      return 'background-image:url('+this.get('thumbnailUrl')+');background-color:#ccc';
+      return Ember.String.htmlSafe(`background-image:url(${this.get('thumbnailUrl')});background-color:#ccc`);
     }
   }.property('url'),
 

@@ -1,7 +1,7 @@
 import rs from 'sharesome/services/remote-storage';
 
-export function initialize(container, application) {
-  container.register('service:rs', rs);
+export function initialize(application) {
+  application.register('service:rs', rs);
 
   application.inject('controller', 'rs', 'service:rs');
   application.inject('route'     , 'rs', 'service:rs');
