@@ -24,12 +24,6 @@ export default Component.extend({
     return remoteStorage.shares.getThumbnailURL(this.get('name'));
   }.property('name'),
 
-  itemStyle: function() {
-    if (this.get('isImage')) {
-      return Ember.String.htmlSafe(`background-image:url(${this.get('thumbnailUrl')});background-color:#ccc`);
-    }
-  }.property('url'),
-
   nameWithoutTimestamp: function() {
     return this.get('name').substr(12);
   }.property('name'),

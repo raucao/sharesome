@@ -170,6 +170,7 @@ section.file-dropzone.has-file-to-upload {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-color: #ccc;
         border-radius: 5px;
         &.generic-file {
           background-image: url(/assets/images/document.svg);

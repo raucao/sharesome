@@ -1,3 +1,4 @@
+/* global Blazy */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -23,6 +24,14 @@ export default Ember.Route.extend({
       });
 
       return shares;
+    });
+  },
+
+  setupController() {
+    this._super(...arguments);
+
+    Ember.run.scheduleOnce('afterRender', function() {
+      new Blazy(); // initialize image lazy loading library
     });
   }
 
