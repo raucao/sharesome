@@ -31,8 +31,31 @@ export default Ember.Route.extend({
     this._super(...arguments);
 
     Ember.run.scheduleOnce('afterRender', function() {
-      new Blazy(); // initialize image lazy loading library
+      initializeLazyLoader();
+      startSpinner();
     });
-  }
+  },
+
 
 });
+
+function initializeLazyLoader() {
+  new Blazy({
+    success: function(elem) {
+      Ember.$(elem).children('.spinner').remove();
+    }
+  });
+}
+
+function startSpinner() {
+  let el = Ember.$('.b-lazy');
+
+  el.spin({
+    length    : 10,
+    width     : 5,
+    radius    : 15,
+    className : 'spinner',
+    top       : '70',
+    left      : '70'
+  });
+}
