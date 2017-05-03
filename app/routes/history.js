@@ -48,14 +48,23 @@ function initializeLazyLoader() {
 }
 
 function startSpinner() {
-  let el = Ember.$('.b-lazy');
-
-  el.spin({
-    length    : 10,
-    width     : 5,
-    radius    : 15,
+  const el = Ember.$('.b-lazy');
+  const options = {
+    length    : 20,
+    height    : 200,
+    width     : 4,
+    radius    : 20,
+    color     : '#eee',
     className : 'spinner',
-    top       : '70',
-    left      : '70'
-  });
+    top       : 'auto',
+    left      : 'auto'
+  };
+
+  // TODO use some method/property (was App.isSmallScreen)
+  if (window.innerWidth <= 640) {
+    options.height = 120;
+    options.width = 3;
+  }
+
+  el.spin(options);
 }
