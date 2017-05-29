@@ -1,7 +1,19 @@
 import Ember from 'ember';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
+const {
+  computed: {
+    alias
+  },
+  inject: {
+    service
+  }
+} = Ember;
+
 export default Ember.Controller.extend({
+
+  remotestorage: service(),
+  rs: alias('remotestorage.rs'),
 
   file: null,
   isUploading: false,
@@ -69,7 +81,7 @@ export default Ember.Controller.extend({
       let file = this.get('file');
       this.set('isUploading', true);
 
-      remoteStorage.shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
+      this.get('rs').shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
         this.setProperties({
           file: null,
           isUploading: false

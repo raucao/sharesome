@@ -23,9 +23,7 @@ module.exports = function(defaults) {
   app.import('bower_components/vex/css/vex.css');
   app.import('bower_components/vex/css/vex-theme-flat-attack.css');
 
-  app.import('bower_components/remotestorage/release/stable/remotestorage-nocache.js');
   app.import('bower_components/vex/js/vex.combined.min.js');
-  app.import('vendor/remotestorage/remotestorage-sharesome.js');
   app.import('vendor/spin-js/spin.min.js');
   app.import('vendor/spin-js/jquery.spin.js');
 

@@ -1,15 +1,27 @@
 import Ember from 'ember';
+import RemoteStorage from 'npm:remotestoragejs';
+import Widget from 'npm:remotestorage-widget';
+import 'npm:remotestorage-module-shares';
 
 export default Ember.Service.extend({
 
+  rs: null, // remoteStorage instance
   connected: false,
   connecting: false,
 
   setup: function() {
-    RemoteStorage.WireClient.REQUEST_TIMEOUT = 90000;
+    // TODO use new API once it's implemented
+    // RemoteStorage.WireClient.REQUEST_TIMEOUT = 90000;
+
+    let remoteStorage = new RemoteStorage({
+      cache: false
+    });
 
     remoteStorage.access.claim('shares', 'rw');
-    remoteStorage.displayWidget({ redirectUri: window.location.href });
+
+    new Widget(remoteStorage, {
+      redirectUri: window.location.href
+    });
 
     remoteStorage.on('ready', () => {
       console.log('RS ready');
@@ -53,6 +65,8 @@ export default Ember.Service.extend({
         'connected': false
       });
     });
+
+    this.set('rs', remoteStorage);
   }.on('init')
 
 });

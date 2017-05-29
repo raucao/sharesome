@@ -1,7 +1,7 @@
 <section class="content history">
   <ul>
     {{#each sortedModel as |item|}}
-      {{history-item item=item removeItem="removeItem"}}
+      {{history-item item=item removeItem="removeItem" rs=rs}}
     {{/each}}
   </ul>
 </section>

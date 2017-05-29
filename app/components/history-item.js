@@ -11,6 +11,7 @@ const {
 export default Component.extend({
 
   tagName: 'li',
+  rs: null,
 
   overlayIsVisible: false,
   url: alias('item.url'),
@@ -21,7 +22,7 @@ export default Component.extend({
   }.property('url'),
 
   thumbnailUrl: function() {
-    return remoteStorage.shares.getThumbnailURL(this.get('name'));
+    return this.get('rs').shares.getThumbnailURL(this.get('name'));
   }.property('name'),
 
   itemStyle: function() {
@@ -65,7 +66,7 @@ export default Component.extend({
     remove: function() {
       this.set('item.isDeleting', true);
 
-      remoteStorage.shares.remove(this.get('name')).then(
+      this.get('rs').shares.remove(this.get('name')).then(
         () => {
           this.sendAction('removeItem', this.get('item'));
         },
