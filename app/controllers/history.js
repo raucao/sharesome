@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   queryChanged: function() {
-    this.set('filteredModel', this.get('model').filter(item => item.name.startsWith(this.get('q'))).sort((a, b) => a <= b ? 1 : -1));
+    this.set('filteredModel', this.get('model').filter( item => item.name.toLowerCase().includes(this.get('q'))).sort((a, b) => a <= b ? 1 : -1));
   }.observes('q', 'model'),
   q: '',
 
