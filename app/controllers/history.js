@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   queryParams: ['q'],
   q: '',
   sortedModel: Ember.computed.sort('model', 'sortProperties'),
-  filteredModel: Ember.computed.filter('sortedModel', function(item, index, array) {
+  filteredModel: Ember.computed.filter('sortedModel', function(item) {
     return item.name.toLowerCase().includes(this.get('q'));
   }).property('q'),
   itemCount: function() {
