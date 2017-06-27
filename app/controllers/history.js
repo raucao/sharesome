@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
   q: '',
   sortedModel: Ember.computed.sort('model', 'sortProperties'),
   filteredModel: Ember.computed.filter('sortedModel', function(item) {
-    return item.name.toLowerCase().includes(this.get('q'));
+    return item.name.toLowerCase().includes(this.get('q').toLowerCase());
   }).property('q'),
   itemCount: function() {
     return this.get('model').length;
