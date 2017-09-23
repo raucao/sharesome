@@ -159,6 +159,7 @@ section.file-dropzone.has-file-to-upload {
     @include clearfix();
     list-style: none;
     li {
+      cursor: pointer;
       position: relative;
       float: left;
       margin: 0 1rem 2rem 1rem;

@@ -39,8 +39,7 @@ export default Component.extend({
   click: function() {
     // TODO use App.isSmallScreen
     if (window.innerWidth <= 640) {
-      var overlayIsVisible = this.get('overlayIsVisible');
-      this.set('overlayIsVisible', !overlayIsVisible);
+      this.toggleProperty('overlayIsVisible');
     }
   },
 
