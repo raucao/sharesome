@@ -1,12 +1,7 @@
-import Ember from 'ember';
+import { htmlSafe } from '@ember/string';
+import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
-
-const {
-  Component,
-  computed: {
-    alias
-  }
-} = Ember;
 
 export default Component.extend({
 
@@ -27,7 +22,7 @@ export default Component.extend({
 
   itemStyle: function() {
     if (this.get('isImage')) {
-      return Ember.String.htmlSafe(`background-image:url(${this.get('thumbnailUrl')});background-color:#ccc`);
+      return htmlSafe(`background-image:url(${this.get('thumbnailUrl')});background-color:#ccc`);
     }
   }.property('url'),
 
@@ -35,11 +30,14 @@ export default Component.extend({
     return this.get('name').substr(12);
   }.property('name'),
 
+  isSmallScreen: function() {
+    return window.innerWidth <= 640;
+  }.property(),
+
   // Events
 
   click: function() {
-    // TODO use App.isSmallScreen
-    if (window.innerWidth <= 640) {
+    if (this.get('isSmallScreen')) {
       var overlayIsVisible = this.get('overlayIsVisible');
       this.set('overlayIsVisible', !overlayIsVisible);
     }

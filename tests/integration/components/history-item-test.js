@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -14,7 +14,7 @@ window.remoteStorage.shares = {
 
 test('it renders images', function(assert) {
 
-  let item = Ember.Object.create({
+  let item = EmberObject.create({
     name: 'foobar.jpg',
     url: 'https://storage.kosmos.org/public/shares/foobar.jpg',
     isDeleting: false

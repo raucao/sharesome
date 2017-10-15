@@ -1,17 +1,14 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { alias, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
-const {
-  computed: { alias },
-  inject: { service }
-} = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   remotestorage: service(),
   rs: alias('remotestorage.rs'),
 
   sortProperties: ['name:desc'],
-  sortedModel: Ember.computed.sort('model', 'sortProperties'),
+  sortedModel: sort('model', 'sortProperties'),
 
   itemCount: function() {
     return this.get('model').length;

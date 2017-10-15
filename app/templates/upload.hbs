@@ -4,7 +4,7 @@
 {{#if hasFileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
-      {{#if App.isSmallScreen}}
+      {{#if isSmallScreen}}
       {{loading-spinner height=200 width=4 radius=20 color='#222' top='auto' left='auto'}}
       {{else}}
       {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
@@ -19,7 +19,7 @@
           <img id="preview-image" src={{file.base64}}>
         </div>
         {{else}}
-        <div id="file-preview" class={{"simpleFileType"}}>
+        <div id="file-preview" class={{simpleFileType}}>
           <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
         </div>
         {{/if}}

@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import $ from 'jquery';
 
 // Has to be called from within a user action handler, e.g. 'click'
 export function copyToClipboard(text) {
   // Create temporary element with input value
   // (has to be visible, so we move it out of view)
-  let tmpEl = Ember.$('<div>');
+  let tmpEl = $('<div>');
   tmpEl.css({position: 'absolute', left: '-1000px', top: '-1000px'});
   tmpEl.text(text);
-  Ember.$('body').append(tmpEl);
+  $('body').append(tmpEl);
   // Create range and selection
   let range = document.createRange();
   let selection = window.getSelection();
@@ -27,4 +28,4 @@ export function copyToClipboard(text) {
   return result;
 }
 
-export default Ember.Helper.helper(copyToClipboard);
+export default helper(copyToClipboard);

@@ -1,15 +1,9 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
-const {
-  computed: {
-    alias
-  },
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Route.extend({
+export default Route.extend({
 
   remotestorage: service(),
   rs: alias('remotestorage.rs'),
@@ -27,7 +21,7 @@ export default Ember.Route.extend({
       let shares = [];
 
       filenames.forEach((filename) => {
-        let item = Ember.Object.create({
+        let item = EmberObject.create({
           name: filename,
           url: this.get('rs').shares.getFileURL(filename),
           isDeleting: false

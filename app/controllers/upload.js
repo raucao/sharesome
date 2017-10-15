@@ -1,16 +1,11 @@
 import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
-const {
-  computed: {
-    alias
-  },
-  inject: {
-    service
-  }
-} = Ember;
-
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   remotestorage: service(),
   rs: alias('remotestorage.rs'),
@@ -35,12 +30,16 @@ export default Ember.Controller.extend({
     }
   }.property('file'),
 
+  isSmallScreen: function() {
+    return window.innerWidth <= 640;
+  }.property(),
+
   actions: {
 
     readInputFile: function(inputFile) {
       let self = this;
 
-      let file = Ember.Object.create({
+      let file = EmberObject.create({
         'name': inputFile.name,
         'type': inputFile.type,
         'size': inputFile.size,
