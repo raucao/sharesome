@@ -26,7 +26,7 @@ test('it renders images', function(assert) {
 
   this.render(hbs`{{history-item item=item}}`);
 
-  assert.equal(this.$('div.image').attr('style').match(/url\((.+)\)/)[1],
+  assert.equal(this.$('div.image').attr('data-src'),
                'https://storage.kosmos.org/public/shares/thumbnails/foobar.jpg');
 
   // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +

@@ -1,3 +1,4 @@
+/* global Blazy */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -24,6 +25,46 @@ export default Ember.Route.extend({
 
       return shares;
     });
-  }
+  },
+
+  setupController() {
+    this._super(...arguments);
+
+    Ember.run.scheduleOnce('afterRender', function() {
+      initializeLazyLoader();
+      startSpinner();
+    });
+  },
+
 
 });
+
+function initializeLazyLoader() {
+  new Blazy({
+    success: function(elem) {
+      Ember.$(elem).children('.spinner').remove();
+    }
+  });
+}
+
+function startSpinner() {
+  const el = Ember.$('.b-lazy');
+  const options = {
+    length    : 20,
+    height    : 200,
+    width     : 4,
+    radius    : 20,
+    color     : '#eee',
+    className : 'spinner',
+    top       : 'auto',
+    left      : 'auto'
+  };
+
+  // TODO use some method/property (was App.isSmallScreen)
+  if (window.innerWidth <= 640) {
+    options.height = 120;
+    options.width = 3;
+  }
+
+  el.spin(options);
+}
