@@ -6,6 +6,7 @@ import Shares from 'npm:remotestorage-module-shares';
 export default Ember.Service.extend({
 
   rs: null, // remoteStorage instance
+  widget: null,
   connected: false,
   connecting: false,
 
@@ -17,10 +18,6 @@ export default Ember.Service.extend({
     });
 
     remoteStorage.access.claim('shares', 'rw');
-
-    new Widget(remoteStorage, {
-      redirectUri: window.location.href
-    });
 
     remoteStorage.on('ready', () => {
       console.log('RS ready');
@@ -66,6 +63,14 @@ export default Ember.Service.extend({
     });
 
     this.set('rs', remoteStorage);
+
+    let widget = new Widget(remoteStorage, {
+      redirectUri: window.location.href
+    });
+
+    widget.attach();
+
+    this.set('widget', widget);
   }.on('init')
 
 });
