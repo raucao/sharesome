@@ -3,10 +3,12 @@ import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
+import { inject as service } from '@ember/service';
+
 export default Component.extend({
 
   tagName: 'li',
-  rs: null,
+  remotestorage: service(),
 
   overlayIsVisible: false,
   url: alias('item.url'),
@@ -17,7 +19,7 @@ export default Component.extend({
   }.property('url'),
 
   thumbnailUrl: function() {
-    return this.get('rs').shares.getThumbnailURL(this.get('name'));
+    return this.get('remotestorage.shares').getThumbnailURL(this.get('name'));
   }.property('name'),
 
   itemStyle: function() {
@@ -64,7 +66,7 @@ export default Component.extend({
     remove: function() {
       this.set('item.isDeleting', true);
 
-      this.get('rs').shares.remove(this.get('name')).then(
+      this.get('remotestorage.shares').remove(this.get('name')).then(
         () => {
           this.sendAction('removeItem', this.get('item'));
         },

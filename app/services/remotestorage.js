@@ -6,6 +6,7 @@ import Shares from 'npm:remotestorage-module-shares';
 export default Service.extend({
 
   rs: null, // remoteStorage instance
+  shares: null,
   widget: null,
   connected: false,
   connecting: false,
@@ -63,6 +64,7 @@ export default Service.extend({
     });
 
     this.set('rs', remoteStorage);
+    this.set('shares', remoteStorage.shares);
 
     let widget = new Widget(remoteStorage, {
       redirectUri: window.location.href
