@@ -1,6 +1,9 @@
 <section class="content history">
+  <div class="search">
+    {{input value=q placeholder="Search" type="search"}}
+  </div>
   <ul>
-    {{#each sortedModel as |item|}}
+    {{#each filteredModel as |item|}}
       {{history-item item=item removeItem="removeItem"}}
     {{/each}}
   </ul>
