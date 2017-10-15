@@ -40,8 +40,7 @@ export default Component.extend({
 
   click: function() {
     if (this.get('isSmallScreen')) {
-      var overlayIsVisible = this.get('overlayIsVisible');
-      this.set('overlayIsVisible', !overlayIsVisible);
+      this.toggleProperty('overlayIsVisible');
     }
   },
 
