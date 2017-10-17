@@ -66,10 +66,7 @@ export default Service.extend({
     this.set('rs', remoteStorage);
     this.set('shares', remoteStorage.shares);
 
-    let widget = new Widget(remoteStorage, {
-      redirectUri: window.location.href
-    });
-
+    let widget = new Widget(remoteStorage);
     widget.attach();
 
     this.set('widget', widget);
