@@ -1,7 +1,6 @@
 {
   "name": "sharesome",
   "dependencies": {
-    "vex": "~1.3.5",
-    "remotestorage": "~0.14.0"
+    "vex": "~1.3.5"
   }
 }

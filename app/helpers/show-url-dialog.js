@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import $ from 'jquery';
 import { copyToClipboard } from 'sharesome/helpers/copy-to-clipboard';
 
 export function showUrlDialog(url) {
@@ -7,12 +8,12 @@ export function showUrlDialog(url) {
      <p><input type="text" value="${url}"></p>
      <p class="actions"><button class="icon copy-url" title="copy to clipboard"><img src="/assets/images/copy.svg" alt="copy"></button></p>`
   );
-  Ember.$('.vex-content input').first().select();
+  $('.vex-content input').first().select();
 
-  Ember.$('.vex-content button.copy-url').on('click', (e) => {
+  $('.vex-content button.copy-url').on('click', (e) => {
     e.preventDefault();
-    copyToClipboard(Ember.$('.vex-content input').val());
-    Ember.$('.vex-content button.copy-url img')
+    copyToClipboard($('.vex-content input').val());
+    $('.vex-content button.copy-url img')
          .attr('src', '/assets/images/checkmark.svg');
     setTimeout(() => {
       window.vex.closeAll();
@@ -20,4 +21,4 @@ export function showUrlDialog(url) {
   });
 }
 
-export default Ember.Helper.helper(showUrlDialog);
+export default helper(showUrlDialog);

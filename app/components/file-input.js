@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
   tagName: 'input',
   attributeBindings: ['type', 'accept', 'multiple', 'disabled'],
@@ -15,7 +16,7 @@ export default Ember.Component.extend({
 
   change: function(event) {
     let input = event.target;
-    if (!Ember.isPresent(input.files)) { return; }
+    if (!isPresent(input.files)) { return; }
 
     this.sendAction('readInputFile', input.files[0]);
   }

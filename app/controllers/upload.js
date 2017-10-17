@@ -1,7 +1,14 @@
 import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Controller from '@ember/controller';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
+
+  remotestorage: service(),
+  rs: alias('remotestorage.rs'),
 
   file: null,
   isUploading: false,
@@ -23,12 +30,16 @@ export default Ember.Controller.extend({
     }
   }.property('file'),
 
+  isSmallScreen: function() {
+    return window.innerWidth <= 640;
+  }.property(),
+
   actions: {
 
     readInputFile: function(inputFile) {
       let self = this;
 
-      let file = Ember.Object.create({
+      let file = EmberObject.create({
         'name': inputFile.name,
         'type': inputFile.type,
         'size': inputFile.size,
@@ -69,7 +80,7 @@ export default Ember.Controller.extend({
       let file = this.get('file');
       this.set('isUploading', true);
 
-      remoteStorage.shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
+      this.get('rs').shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
         this.setProperties({
           file: null,
           isUploading: false

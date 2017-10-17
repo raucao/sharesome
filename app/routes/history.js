@@ -1,22 +1,29 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend({
+export default Route.extend({
+
+  remotestorage: service(),
+  rs: alias('remotestorage.rs'),
+  rsConnected: alias('remotestorage.connected'),
 
   beforeModel() {
-    if (!this.rs.connected) {
+    if (!this.get('rsConnected')) {
       this.transitionTo('index');
     }
   },
 
   model() {
-    return remoteStorage.shares.list().then((listing) => {
+    return this.get('rs').shares.list().then((listing) => {
       let filenames = Object.keys(listing);
       let shares = [];
 
       filenames.forEach((filename) => {
-        let item = Ember.Object.create({
+        let item = EmberObject.create({
           name: filename,
-          url: remoteStorage.shares.getFileURL(filename),
+          url: this.get('rs').shares.getFileURL(filename),
           isDeleting: false
         });
         shares.pushObject(item);

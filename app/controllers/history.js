@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { sort } from '@ember/object/computed';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
 
   sortProperties: ['name:desc'],
-  sortedModel: Ember.computed.sort('model', 'sortProperties'),
+  sortedModel: sort('model', 'sortProperties'),
 
   itemCount: function() {
     return this.get('model').length;

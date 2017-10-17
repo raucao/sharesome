@@ -167,13 +167,14 @@ section.file-dropzone {
 
 // RS
 
-#remotestorage-connect {
-  #remotestorage-widget {
-    position: fixed;
-    top: 0.5rem;
-    right: 0.8rem;
-  }
+// #remotestorage-connect {
+#remotestorage-widget {
+  position: fixed;
+  top: 0.5rem;
+  right: 0.8rem;
+  z-index: 21000000;
 }
+// }
 
 // DIALOGS
 
