@@ -41,9 +41,9 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
     "loader.js": "^4.2.3",
-    "remotestorage-module-shares": "github:skddc/remotestorage-module-shares#v2.0.0",
-    "remotestorage-widget": "^0.7.0",
-    "remotestoragejs": "github:remotestorage/remotestorage.js#v1.0.0-alpha8"
+    "remotestorage-module-shares": "^2.1.2",
+    "remotestorage-widget": "1.0.0-rc3",
+    "remotestoragejs": "1.0.0-rc5"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*",
