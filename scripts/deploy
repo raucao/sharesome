@@ -4,9 +4,9 @@ set -ex
 git up
 npm run build:dist
 git checkout production
-rm *.png *.html *.xml *.txt
+rm -f *.png *.html *.xml *.txt
 rm -rf assets/*
-cp -r dist/* .
+cp -rf dist/* .
 git add --all
 git commit -m "Update static build - `date -u`"
 # Setting up the remote:
