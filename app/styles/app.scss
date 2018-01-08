@@ -21,25 +21,31 @@ a:active {
 nav {
   background-color: #222;
   color: #ccc;
+
   a {
     color: #eee;
     text-decoration: none;
+
     &:hover, &.active {
       background: #333;
     }
+
     &:active {
       background: #555;
     }
   }
+
   #logo {
     font-size: 30px;
     a {
       color: yellow;
     }
   }
+
   ul {
     list-style: none;
   }
+
   li#history a {
     font-size: 24px;
   }
@@ -53,6 +59,7 @@ main {
 .content.welcome {
   font-size: 1.4rem;
   line-height: 1.4em;
+
   h2 {
     font-size: 2.8rem;
     margin-bottom: 2.8rem;
@@ -114,6 +121,7 @@ section.file-dropzone.has-file-to-upload {
       }
     }
   }
+
   button.upload, button.cancel {
     border: none;
     border-radius: 5px;
@@ -122,6 +130,7 @@ section.file-dropzone.has-file-to-upload {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     text-transform: uppercase;
   }
+
   button.upload {
     background: #222;
     color: #eee;
@@ -154,16 +163,16 @@ section.file-dropzone.has-file-to-upload {
 }
 
 .content.history {
-  width: 90%;
-  padding-bottom: 4rem;
   ul {
     @include clearfix();
     list-style: none;
+
     li {
       cursor: pointer;
       position: relative;
       float: left;
       margin: 0 1rem 2rem 1rem;
+
       .image {
         position: relative;
         display: block;
@@ -173,11 +182,13 @@ section.file-dropzone.has-file-to-upload {
         background-position: center;
         background-repeat: no-repeat;
         border-radius: 5px;
+
         &.generic-file {
           background-image: url(/assets/images/document.svg);
           background-position: center 40px;
           background-size: 100px;
           background-color: #222;
+
           .meta {
             position: absolute;
             width: auto;
@@ -192,6 +203,7 @@ section.file-dropzone.has-file-to-upload {
           }
         }
       }
+
       .overlay {
         display: none;
         position: absolute;
@@ -203,9 +215,11 @@ section.file-dropzone.has-file-to-upload {
         background: rgba(34,34,34,0.8);
         @include border-bottom-radius(5px);
         @include clearfix;
+
         &.visible {
           display: block;
         }
+
         a {
           background: rgba(0,0,0,0.2);
           color: #eee;
@@ -221,6 +235,7 @@ section.file-dropzone.has-file-to-upload {
           }
         }
       }
+
       .overlay-deleting {
         position: absolute;
         width: auto;
@@ -263,6 +278,7 @@ section.file-dropzone.has-file-to-upload {
             background-size: 48px;
           }
         }
+
         .overlay {
           position: absolute;
           width: auto;
@@ -284,4 +300,3 @@ section.file-dropzone.has-file-to-upload {
     }
   }
 }
-
