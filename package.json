@@ -31,7 +31,7 @@
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-qunit": "^4.0.0",
-    "ember-cli-sass": "^5.2.1",
+    "ember-cli-sass": "^7.0.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
@@ -42,8 +42,8 @@
     "ember-source": "~2.16.0",
     "loader.js": "^4.2.3",
     "remotestorage-module-shares": "^2.1.2",
-    "remotestorage-widget": "1.0.0-rc5",
-    "remotestoragejs": "1.0.0-rc5"
+    "remotestorage-widget": "1.2.0",
+    "remotestoragejs": "1.0.2"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*",
