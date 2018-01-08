@@ -67,9 +67,11 @@ main {
     top: auto;
     bottom: 0;
     text-align: center;
+
     ul {
       width: 100%;
       @include clearfix();
+
       li {
         display: inline;
         float: left;
@@ -87,12 +89,20 @@ main {
     width: 100%;
     padding-left: 0;
     margin-bottom: 4rem;
-    section.content {
-      padding: 4rem 0 0 0;
-      &.welcome {
+
+    section {
+      &.content {
         padding: 4rem 0 0 0;
-        width: 90%;
-        max-width: 90%;
+
+        &.welcome {
+          padding: 4rem 0 0 0;
+          width: 90%;
+          max-width: 90%;
+        }
+      }
+
+      &.history {
+        padding-top: 1.5rem;
       }
     }
   }

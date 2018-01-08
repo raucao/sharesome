@@ -162,14 +162,14 @@ section.file-dropzone.has-file-to-upload {
 }
 
 .content.history {
-  text-align: center;
+  text-align: left;
 
   .search {
-    margin: 0 auto 3rem auto;
+    margin: 0 0 2rem;
     z-index: 2342;
 
     input[type=text] {
-      width: 50%;
+      width: 80%;
       padding: 0.5rem 0.75rem;
       background: #fff;
       border: none;
@@ -181,6 +181,7 @@ section.file-dropzone.has-file-to-upload {
   ul {
     @include clearfix();
     list-style: none;
+    text-align: center;
 
     li {
       cursor: pointer;
@@ -268,6 +269,16 @@ section.file-dropzone.has-file-to-upload {
 
 @media screen and (min-width : 640px) {
   .content.history {
+    text-align: center;
+
+    .search {
+      margin: 0 auto 3rem auto;
+
+      input[type=text] {
+        width: 50%;
+      }
+    }
+
     ul {
       li {
         &:hover .overlay {
@@ -284,7 +295,7 @@ section.file-dropzone.has-file-to-upload {
       li {
         position: relative;
         float: left;
-        margin: 0 0.5rem 1rem 0.5rem;
+        margin: 0 1rem 1rem 0;
 
         .image {
           width: 120px;
