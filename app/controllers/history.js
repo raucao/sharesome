@@ -6,7 +6,7 @@ export default Controller.extend({
   queryInput: '',
 
   sortProperties: ['name:desc'],
-  sortedModel: sort('model', 'sortProperties'),
+  sortedModel: sort('filteredModel', 'sortProperties'),
 
   queryChanged: function() {
     let model = this.get('model');
@@ -14,7 +14,6 @@ export default Controller.extend({
 
     if (queryInput !== '') {
       model = model.filter(i => i.name.toLowerCase().includes(queryInput));
-                   // .sort((a, b) => a <= b ? 1 : -1); //TODO check if still necessary
     }
 
     this.set('filteredModel', model);

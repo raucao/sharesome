@@ -3,7 +3,7 @@
     {{input value=queryInput placeholder="Search" class="search-field"}}
   </div>
   <ul>
-    {{#each filteredModel as |item|}}
+    {{#each sortedModel as |item|}}
       {{history-item item=item removeItem="removeItem"}}
     {{/each}}
   </ul>
