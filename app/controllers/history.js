@@ -3,14 +3,22 @@ import { sort } from '@ember/object/computed';
 
 export default Controller.extend({
 
+  queryInput: '',
 
   sortProperties: ['name:desc'],
   sortedModel: sort('model', 'sortProperties'),
 
   queryChanged: function() {
-    this.set('filteredModel', this.get('model').filter( item => item.name.toLowerCase().includes(this.get('q'))).sort((a, b) => a <= b ? 1 : -1));
-  }.observes('q', 'model'),
-  q: '',
+    let model = this.get('model');
+    let queryInput = this.get('queryInput');
+
+    if (queryInput !== '') {
+      model = model.filter(i => i.name.toLowerCase().includes(queryInput));
+                   // .sort((a, b) => a <= b ? 1 : -1); //TODO check if still necessary
+    }
+
+    this.set('filteredModel', model);
+  }.observes('queryInput', 'model'),
 
   itemCount: function() {
     return this.get('model').length;
