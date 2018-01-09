@@ -1,3 +1,5 @@
+$navbarSize: 60px;
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -19,18 +21,20 @@ html, body {
 nav {
   position: fixed;
   height: auto;
-  width: 4rem;
+  width: $navbarSize;
   top: 0;
   bottom: 0;
   text-align: center;
   z-index: 23;
+
   ul {
     width: 100%;
+
     li {
       a {
         display: block;
         text-align: center;
-        line-height: 4rem;
+        line-height: $navbarSize;
       }
     }
   }
@@ -38,12 +42,12 @@ nav {
 
 main {
   width: 100%;
-  padding-left: 4rem;
+  padding-left: $navbarSize;
   text-align: center;
 
   section {
     &.content {
-      padding: 4rem 4rem 0 0;
+      padding: $navbarSize 0 0 0;
       margin: 0 auto;
     }
     &.welcome {
@@ -53,7 +57,7 @@ main {
     }
     &.history {
       width: 90%;
-      padding: 2rem 0 4rem 0;
+      padding: 2rem 0 $navbarSize 0;
     }
   }
 }
@@ -77,8 +81,8 @@ main {
         a {
           display: block;
           text-align: center;
-          width: 4rem;
-          line-height: 4rem;
+          width: $navbarSize;
+          line-height: $navbarSize;
         }
       }
     }
@@ -87,14 +91,14 @@ main {
   main {
     width: 100%;
     padding-left: 0;
-    margin-bottom: 4rem;
+    margin-bottom: $navbarSize;
 
     section {
       &.content {
-        padding: 4rem 0 0 0;
+        padding: $navbarSize 0 0 0;
 
         &.welcome {
-          padding: 4rem 0 0 0;
+          padding: $navbarSize 0 0 0;
           width: 90%;
           max-width: 90%;
         }
@@ -117,7 +121,7 @@ section.file-dropzone {
   top: 0;
   left: 0;
   right: 0;
-  margin: 0 0 0 4rem;
+  margin: 0 0 0 $navbarSize;
   border: none;
 
   .hint {
@@ -147,7 +151,7 @@ section.file-dropzone {
 
 @media screen and (max-width : 640px) {
   section.file-dropzone {
-    bottom: 4rem;
+    bottom: $navbarSize;
     margin: 0;
     .hint {
       background-position: center 80px;
@@ -183,14 +187,23 @@ section.file-dropzone {
 
 // RS
 
-// #remotestorage-connect {
 #remotestorage-widget {
   position: fixed;
-  top: 0;
-  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 21000000;
+
+  .rs-widget.rs-state-connected {
+    margin: 0 !important;
+  }
 }
-// }
+
+@media screen and (max-width: 640px) {
+  #remotestorage-widget {
+    left: auto;
+    right: 0;
+  }
+}
 
 // DIALOGS
 
@@ -222,8 +235,8 @@ section.file-dropzone {
 
 @media screen and (max-height: 600px) {
   .vex.vex-theme-flat-attack {
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding-top: $navbarSize;
+    padding-bottom: $navbarSize;
     .vex-content {
       img.zoomed {
         max-height: 300px;
