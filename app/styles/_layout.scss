@@ -54,6 +54,7 @@ main {
       text-align: left;
       width: 90%;
       max-width: 50rem;
+      padding-bottom: 2rem;
     }
     &.history {
       width: 90%;
@@ -187,8 +188,9 @@ section.file-dropzone {
 
 // RS
 
-#remotestorage-widget {
-  position: fixed;
+#rs-widget-container {
+  position: absolute;
+  display: inline-block;
   bottom: 0;
   left: 0;
   z-index: 21000000;
@@ -199,9 +201,19 @@ section.file-dropzone {
 }
 
 @media screen and (max-width: 640px) {
-  #remotestorage-widget {
+  #rs-widget-container {
     left: auto;
     right: 0;
+  }
+}
+
+body.connect {
+  text-align: center;
+
+  #rs-widget-container {
+    text-align: left;
+    position: relative;
+    margin: 0 auto;
   }
 }
 

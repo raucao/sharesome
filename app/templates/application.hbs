@@ -5,16 +5,6 @@
   </ul>
 </nav>
 <main>
-  {{#if remotestorage.connected}}
-    {{outlet}}
-  {{else}}
-    {{#if remotestorage.connecting}}
-      <section class="content remotestorage-connecting">
-        {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
-        <p>Connecting</p>
-      </section>
-    {{else}}
-      {{partial "welcome"}}
-    {{/if}}
-  {{/if}}
+  {{outlet}}
 </main>
+<div id="rs-widget-container"></div>

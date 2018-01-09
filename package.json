@@ -21,6 +21,7 @@
     "bower": "^1.7.7",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
+    "ember-body-class": "^0.4.0",
     "ember-browserify": "^1.1.13",
     "ember-cli": "~2.16.2",
     "ember-cli-app-version": "^3.0.0",

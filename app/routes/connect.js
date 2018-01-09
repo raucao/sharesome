@@ -7,17 +7,11 @@ export default Route.extend({
 
   storage: service('remotestorage'),
 
-  beforeModel () {
+  beforeModel() {
     return this.waitForConnectionState().then(() => {
-      if (this.get('storage.disconnected')) {
-        this.transitionTo('connect');
+      if (this.get('storage.connected')) {
+        this.transitionTo('index');
       }
-    });
-  },
-
-  renderTemplate () {
-    this.render('upload', {
-      controller: 'upload'
     });
   },
 
@@ -33,14 +27,6 @@ export default Route.extend({
         }
       }
       checkConnectingDone();
-    });
-  },
-
-  init () {
-    this._super(...arguments);
-
-    this.get('storage.rs').on('disconnected', () => {
-      this.transitionTo('connect');
     });
   }
 

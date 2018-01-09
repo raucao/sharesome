@@ -1,4 +1,6 @@
 import Service from '@ember/service';
+import { computed } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
 import RemoteStorage from 'npm:remotestoragejs';
 import Widget from 'npm:remotestorage-widget';
 import Shares from 'npm:remotestorage-module-shares';
@@ -9,7 +11,9 @@ export default Service.extend({
   shares: null,
   widget: null,
   connected: false,
-  connecting: false,
+  connecting: true,
+  unauthorized: false,
+  disconnected: computed.not('connected'),
 
   setup: function() {
     let remoteStorage = new RemoteStorage({
@@ -22,10 +26,10 @@ export default Service.extend({
 
     remoteStorage.on('ready', () => {
       console.debug('RS ready');
-      this.setProperties({
-        'connecting': false,
-        'connected': true
-      });
+      // this.setProperties({
+      //   'connecting': false,
+      //   'connected': false
+      // });
     });
     remoteStorage.on('not-connected', () => {
       console.debug('RS not-connected');
@@ -66,8 +70,13 @@ export default Service.extend({
     this.set('rs', remoteStorage);
     this.set('shares', remoteStorage.shares);
 
-    let widget = new Widget(remoteStorage);
-    widget.attach();
+    let widget = new Widget(remoteStorage, {
+      // skipInitial: true
+    });
+
+    scheduleOnce('afterRender', () => {
+      widget.attach('rs-widget-container');
+    });
 
     this.set('widget', widget);
   }.on('init')
