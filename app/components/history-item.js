@@ -1,4 +1,3 @@
-import { htmlSafe } from '@ember/string';
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
@@ -22,12 +21,6 @@ export default Component.extend({
     return this.get('remotestorage.shares').getThumbnailURL(this.get('name'));
   }.property('name'),
 
-  itemStyle: function() {
-    if (this.get('isImage')) {
-      return htmlSafe(`background-image:url(${this.get('thumbnailUrl')});background-color:#ccc`);
-    }
-  }.property('url'),
-
   nameWithoutTimestamp: function() {
     return this.get('name').substr(12);
   }.property('name'),
@@ -37,6 +30,11 @@ export default Component.extend({
   }.property(),
 
   // Events
+
+  didInsertElement() {
+    this._super(...arguments);
+    this.get('imagesObserver').observe(this.$('.image')[0]);
+  },
 
   click: function() {
     if (this.get('isSmallScreen')) {
