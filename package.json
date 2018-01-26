@@ -43,7 +43,7 @@
     "ember-source": "~2.16.0",
     "intersection-observer": "^0.5.0",
     "loader.js": "^4.2.3",
-    "remotestorage-module-shares": "^2.1.2",
+    "remotestorage-module-shares": "^2.1.4",
     "remotestorage-widget": "1.3.0",
     "remotestoragejs": "1.0.2"
   },
