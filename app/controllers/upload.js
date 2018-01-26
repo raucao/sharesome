@@ -89,7 +89,7 @@ export default Controller.extend({
       }, error => {
         this.set('isUploading', false);
         window.vex.dialog.alert('Something bad happened during upload.<br />Please try again.');
-        Ember.Logger.error(error);
+        console.error(error);
       });
     }
   }
