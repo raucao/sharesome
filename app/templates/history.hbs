@@ -5,7 +5,7 @@
   {{#if sortedModel}}
   <ul>
     {{#each sortedModel as |item|}}
-      {{history-item item=item removeItem="removeItem"}}
+      {{history-item item=item removeItem="removeItem" imagesObserver=imagesIntersectionObserver}}
     {{/each}}
   </ul>
   {{else}}

@@ -41,6 +41,7 @@
     "ember-moment": "^6.0.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.16.0",
+    "intersection-observer": "^0.5.0",
     "loader.js": "^4.2.3",
     "remotestorage-module-shares": "^2.1.2",
     "remotestorage-widget": "1.2.0",
