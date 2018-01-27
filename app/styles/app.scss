@@ -34,19 +34,29 @@ nav {
     }
   }
 
-  #logo {
-    font-size: 30px;
-    a {
-      color: yellow;
-    }
-  }
 
   ul {
     list-style: none;
   }
 
-  li#history a {
-    font-size: 24px;
+  li {
+    svg {
+      width: 32px;
+      height: auto;
+
+      path,
+      g rect {
+        fill: #ccc;
+      }
+    }
+
+    &#upload {
+      a {
+        svg path {
+          fill: yellow;
+        }
+      }
+    }
   }
 }
 

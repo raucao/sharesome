@@ -34,7 +34,10 @@ nav {
       a {
         display: block;
         text-align: center;
-        line-height: $navbarSize;
+        height: $navbarSize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
@@ -80,7 +83,6 @@ main {
         display: inline;
         float: left;
         a {
-          display: block;
           text-align: center;
           width: $navbarSize;
           line-height: $navbarSize;
