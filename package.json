@@ -12,6 +12,7 @@
     "build": "npm run clean:dist && ember build",
     "build:dist": "npm run clean:dist && ember build -prod && bash scripts/update-versionfile",
     "deploy": "bash scripts/deploy",
+    "deploy:staging": "bash scripts/deploy-staging",
     "start": "ember server",
     "test": "ember test",
     "postinstall": "bower install",
