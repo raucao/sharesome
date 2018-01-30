@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import EmberObject from '@ember/object';
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
