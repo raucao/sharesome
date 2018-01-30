@@ -1,7 +1,9 @@
 # Sharesome
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Sharesome lets you share files quickly from your own remote storage account.
+
+Your account needs to support the RS (remoteStorage) standard. See
+https://remotestorage.io for more information.
 
 ## Prerequisites
 
@@ -35,12 +37,15 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Building
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+* `npm run build` (development)
+* `npm run build:dist` (production)
 
 ### Deploying
 
-[TODO]
+For deploying a new version to https://sharesome.5apps.com you need to be added
+as a collaborator on [5apps Deploy](https://5apps.com/deploy/).
+
+* `npm run deploy` (production)
 
 ## Further Reading / Useful Links
 
