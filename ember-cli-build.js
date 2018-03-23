@@ -34,5 +34,7 @@ module.exports = function(defaults) {
   app.import('vendor/spin-js/jquery.spin.js');
   app.import('vendor/intersection-observer.js');
 
+  app.import('node_modules/jimp/browser/lib/jimp.js');
+
   return app.toTree();
 };

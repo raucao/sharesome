@@ -15,19 +15,23 @@
     <section class="content upload-preview">
       <div class="upload-preview">
         {{#if fileIsImage}}
-        <div id="file-preview" class="image">
-          <img id="preview-image" src={{file.base64}}>
-        </div>
+          <div id="file-preview" class="image">
+            <img id="preview-image" src={{file.base64}}>
+          </div>
         {{else}}
-        <div id="file-preview" class={{simpleFileType}}>
-          <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
-        </div>
+          <div id="file-preview" class={{simpleFileType}}>
+            <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
+          </div>
         {{/if}}
         <p class="meta-data">
           <span class="name">{{file.name}}</span>
           <span class="size">{{human-file-size file.size}}</span>
         </p>
         <p class="actions">
+          {{#if fileIsImage}}
+            <button {{action "rotateLeft"}} class="rotate-left">Rotate left</button>
+            <button {{action "rotateRight"}} class="rotate-right">Rotate right</button>
+          {{/if}}
           <button {{action "submitFileUpload"}} class="upload">Upload</button>
           <button {{action "cancelFileUpload"}} class="cancel">Cancel</button>
         </p>
