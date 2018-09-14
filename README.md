@@ -5,6 +5,11 @@ Sharesome lets you share files quickly from your own remote storage account.
 Your account needs to support the RS (remoteStorage) standard. See
 https://remotestorage.io for more information.
 
+## Contributing
+
+Please open GitHub issues for any questions, feedback or feature requests. Pull
+requests for the source code are very welcome and will always be responded to.
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
