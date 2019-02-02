@@ -18,7 +18,7 @@ export default Component.extend({
     let input = event.target;
     if (!isPresent(input.files)) { return; }
 
-    this.sendAction('readInputFile', input.files[0]);
+    this.readInputFile(input.files[0]);
   }
 
 });

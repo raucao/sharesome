@@ -2,28 +2,29 @@
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 import { scheduleOnce } from '@ember/runloop';
+import { computed, observer } from '@ember/object';
 
 export default Controller.extend({
 
   queryInput: '',
 
-  sortProperties: ['name:desc'],
+  sortProperties: Object.freeze(['name:desc']),
   sortedModel: sort('filteredModel', 'sortProperties'),
 
-  queryChanged: function() {
-    let model = this.get('model');
-    let queryInput = this.get('queryInput');
+  queryChanged: observer('queryInput', 'model', function() {
+    let model = this.model;
+    let queryInput = this.queryInput;
 
     if (queryInput !== '') {
       model = model.filter(i => i.name.toLowerCase().includes(queryInput));
     }
 
     this.set('filteredModel', model);
-  }.observes('queryInput', 'model'),
+  }),
 
-  itemCount: function() {
-    return this.get('model').length;
-  }.property('model.[]'),
+  itemCount: computed('model.[]', function() {
+    return this.model.length;
+  }),
 
   init() {
     this._super(...arguments);
@@ -58,7 +59,7 @@ export default Controller.extend({
   actions: {
 
     removeItem(item) {
-      this.get('model').removeObject(item);
+      this.model.removeObject(item);
     }
 
   }

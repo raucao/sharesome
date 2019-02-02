@@ -1,18 +1,19 @@
-import { moduleForComponent, test } from 'ember-qunit';
-// import hbs from 'htmlbars-inline-precompile';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import '@ember/test-helpers';
 
-moduleForComponent('loading-spinner', 'Integration | Component | loading spinner', {
-  integration: true
-});
+module('Integration | Component | loading spinner', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
+  test('it renders', function(assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });" + EOL + EOL +
 
-  // TODO load spin.js somehow
-  // this.render(hbs`{{loading-spinner}}`);
+    // TODO load spin.js somehow
+    // this.render(hbs`{{loading-spinner}}`);
 
-  // assert.equal(this.$('.spinner-wrapper').length, 1);
+    // assert.equal(this.$('.spinner-wrapper').length, 1);
 
-  assert.ok(true);
+    assert.ok(true);
+  });
 });

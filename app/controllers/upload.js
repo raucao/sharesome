@@ -1,4 +1,4 @@
-import EmberObject from '@ember/object';
+import EmberObject, { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
@@ -12,30 +12,30 @@ export default Controller.extend({
   file: null,
   isUploading: false,
 
-  hasFileToUpload: function() {
-    return this.get('file') !== null;
-  }.property('file'),
+  hasFileToUpload: computed('file', function() {
+    return this.file !== null;
+  }),
 
-  fileIsImage: function() {
+  fileIsImage: computed('file', function() {
     return this.get('file.type').match('image.*');
-  }.property('file'),
+  }),
 
-  simpleFileType: function() {
+  simpleFileType: computed('file', function() {
     let type = this.get('file.type');
     if (type && typeof type !== 'undefined' && type !== '') {
       return type.replace('/','-');
     } else {
       return "unkown";
     }
-  }.property('file'),
+  }),
 
-  isSmallScreen: function() {
+  isSmallScreen: computed(function() {
     return window.innerWidth <= 640;
-  }.property(),
+  }).volatile(),
 
   actions: {
 
-    readInputFile: function(inputFile) {
+    readInputFile (inputFile) {
       let self = this;
 
       let file = EmberObject.create({
@@ -71,15 +71,15 @@ export default Controller.extend({
       fileReaderBinary.readAsArrayBuffer(inputFile);
     },
 
-    cancelFileUpload() {
+    cancelFileUpload () {
       this.set('file', null);
     },
 
-    submitFileUpload() {
-      let file = this.get('file');
+    submitFileUpload () {
+      let file = this.file;
       this.set('isUploading', true);
 
-      this.get('rs').shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
+      this.rs.shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
         this.setProperties({
           file: null,
           isUploading: false

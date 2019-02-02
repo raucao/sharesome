@@ -27,14 +27,14 @@ export default Component.extend({
     if (e.stopPropagation) { e.stopPropagation(); }
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      this.sendAction('readInputFile', e.dataTransfer.files[0]);
+      this.readInputFile(e.dataTransfer.files[0]);
     }
   },
 
   actions: {
 
     readInputFile(file) {
-      this.sendAction('readInputFile', file);
+      this.readInputFile(file);
     }
 
   }

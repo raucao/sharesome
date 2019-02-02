@@ -1,13 +1,13 @@
 {{file-dropzone hasFileToUpload=hasFileToUpload
-                readInputFile="readInputFile"}}
+                readInputFile=(action "readInputFile")}}
 
 {{#if hasFileToUpload}}
   {{#if isUploading}}
     <section class="content upload-in-progress">
       {{#if isSmallScreen}}
-      {{loading-spinner height=200 width=4 radius=20 color='#222' top='auto' left='auto'}}
+        {{loading-spinner height=200 width=4 radius=20 color="#222" top="auto" left="auto"}}
       {{else}}
-      {{loading-spinner height=300 width=5 radius=30 color='#222' top='auto' left='auto'}}
+        {{loading-spinner height=300 width=5 radius=30 color="#222" top="auto" left="auto"}}
       {{/if}}
       <p>Uploading</p>
     </section>
@@ -15,13 +15,13 @@
     <section class="content upload-preview">
       <div class="upload-preview">
         {{#if fileIsImage}}
-        <div id="file-preview" class="image">
-          <img id="preview-image" src={{file.base64}}>
-        </div>
+          <div id="file-preview" class="image">
+            <img id="preview-image" src={{file.base64}} alt="preview">
+          </div>
         {{else}}
-        <div id="file-preview" class={{simpleFileType}}>
-          <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
-        </div>
+          <div id="file-preview" class={{simpleFileType}}>
+            <p>icon for CSS class<br><code>#filepreview.{{simpleFileType}}</code></p>
+          </div>
         {{/if}}
         <p class="meta-data">
           <span class="name">{{file.name}}</span>

@@ -10,20 +10,20 @@ export default Route.extend({
   rsConnected: alias('remotestorage.connected'),
 
   beforeModel() {
-    if (!this.get('rsConnected')) {
+    if (!this.rsConnected) {
       this.transitionTo('index');
     }
   },
 
   model() {
-    return this.get('rs').shares.list().then((listing) => {
+    return this.rs.shares.list().then((listing) => {
       let filenames = Object.keys(listing);
       let shares = [];
 
       filenames.forEach((filename) => {
         let item = EmberObject.create({
           name: filename,
-          url: this.get('rs').shares.getFileURL(filename),
+          url: this.rs.shares.getFileURL(filename),
           isDeleting: false
         });
         shares.pushObject(item);

@@ -26,7 +26,7 @@ export default Route.extend(BodyClassMixin, {
     // first one
     if (this.get('storage.unauthorized')) { return; }
 
-    this.get('storage').setProperties({
+    this.storage.setProperties({
       unauthorized: true,
       connecting: false,
       connected: false

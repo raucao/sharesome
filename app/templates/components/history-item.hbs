@@ -6,19 +6,19 @@
   </div>
 {{/if}}
 
-<div class="overlay {{if overlayIsVisible 'visible'}}">
-  <a class="share" {{action "share"}}><i class="icon-export"></i></a>
-  <a class="zoom" {{action "zoom"}}><i class="icon-eye"></i></a>
-  <a class="go-to-url" href={{url}} target="_blank"><i class="icon-download"></i></a>
-  <a class="delete" {{action "remove"}}><i class="icon-trash"></i></a>
+<div class="overlay {{if overlayIsVisible "visible"}}">
+  <a class="share" {{action "share"}} role="button"><i class="icon-export"></i></a>
+  <a class="zoom" {{action "zoom"}} role="button"><i class="icon-eye"></i></a>
+  <a class="go-to-url" href={{url}} target="_blank" rel="noopener"><i class="icon-download"></i></a>
+  <a class="delete" {{action "remove"}} role="button"><i class="icon-trash"></i></a>
 </div>
 
 {{#if item.isDeleting}}
   <div class="overlay-deleting">
     {{#if isSmallScreen}}
-    {{loading-spinner height=120 width=3 radius=20 color='#eee' top='auto' left='auto'}}
+      {{loading-spinner height=120 width=3 radius=20 color="#eee" top="auto" left="auto"}}
     {{else}}
-    {{loading-spinner height=200 width=4 radius=20 color='#eee' top='auto' left='auto'}}
+      {{loading-spinner height=200 width=4 radius=20 color="#eee" top="auto" left="auto"}}
     {{/if}}
   </div>
 {{/if}}

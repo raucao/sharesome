@@ -1,5 +1,5 @@
+import { not } from '@ember/object/computed';
 import Service from '@ember/service';
-import { computed } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
 import RemoteStorage from 'npm:remotestoragejs';
 import Widget from 'npm:remotestorage-widget';
@@ -13,9 +13,9 @@ export default Service.extend({
   connected: false,
   connecting: true,
   unauthorized: false,
-  disconnected: computed.not('connected'),
+  disconnected: not('connected'),
 
-  setup: function() {
+  init () {
     let remoteStorage = new RemoteStorage({
       cache: false,
       requestTimeout: 90000,
@@ -79,6 +79,8 @@ export default Service.extend({
     });
 
     this.set('widget', widget);
-  }.on('init')
+
+    this._super();
+  }
 
 });

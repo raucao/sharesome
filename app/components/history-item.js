@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Component.extend({
 
@@ -13,31 +14,31 @@ export default Component.extend({
   url: alias('item.url'),
   name: alias('item.name'),
 
-  isImage: function() {
-    return this.get('url').match(/(jpg|jpeg|png|gif|webp)$/i);
-  }.property('url'),
+  isImage: computed('url', function() {
+    return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
+  }),
 
-  thumbnailUrl: function() {
-    return this.get('remotestorage.shares').getThumbnailURL(this.get('name'));
-  }.property('name'),
+  thumbnailUrl: computed('name', function() {
+    return this.get('remotestorage.shares').getThumbnailURL(this.name);
+  }),
 
-  nameWithoutTimestamp: function() {
-    return this.get('name').substr(12);
-  }.property('name'),
+  nameWithoutTimestamp: computed('name', function() {
+    return this.name.substr(12);
+  }),
 
-  isSmallScreen: function() {
+  isSmallScreen: computed(function() {
     return window.innerWidth <= 640;
-  }.property(),
+  }).volatile(),
 
   // Events
 
-  didInsertElement() {
+  didInsertElement () {
     this._super(...arguments);
-    this.get('imagesObserver').observe(this.$('.image')[0]);
+    this.imagesObserver.observe(this.$('.image')[0]);
   },
 
   click: function() {
-    if (this.get('isSmallScreen')) {
+    if (this.isSmallScreen) {
       this.toggleProperty('overlayIsVisible');
     }
   },
@@ -45,14 +46,14 @@ export default Component.extend({
   actions: {
 
     share: function() {
-      showUrlDialog(this.get('url'));
+      showUrlDialog(this.url);
     },
 
     zoom: function() {
       let dialogContent;
 
-      if (this.get('isImage')) {
-        dialogContent = "<img src='"+this.get('url')+"' class='zoomed'>";
+      if (this.isImage) {
+        dialogContent = "<img src='"+this.url+"' class='zoomed'>";
       } else {
         dialogContent = "No preview available.";
       }
@@ -63,9 +64,9 @@ export default Component.extend({
     remove: function() {
       this.set('item.isDeleting', true);
 
-      this.get('remotestorage.shares').remove(this.get('name')).then(
+      this.get('remotestorage.shares').remove(this.name).then(
         () => {
-          this.sendAction('removeItem', this.get('item'));
+          this.removeItem(this.item);
         },
         error => {
           this.set('item.isDeleting', false);

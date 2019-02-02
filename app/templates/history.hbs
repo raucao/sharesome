@@ -3,16 +3,18 @@
     {{input value=queryInput placeholder="Search" class="search-field"}}
   </div>
   {{#if sortedModel}}
-  <ul>
-    {{#each sortedModel as |item|}}
-      {{history-item item=item removeItem="removeItem" imagesObserver=imagesIntersectionObserver}}
-    {{/each}}
-  </ul>
+    <ul>
+      {{#each sortedModel as |item|}}
+        {{history-item item=item
+                       removeItem=(action "removeItem")
+                       imagesObserver=imagesIntersectionObserver}}
+      {{/each}}
+    </ul>
   {{else}}
-  <div class="no-items">
-    <p>
-      You haven't shared any files yet.
-    </p>
-  </div>
+    <div class="no-items">
+      <p>
+        You haven't shared any files yet.
+      </p>
+    </div>
   {{/if}}
 </section>

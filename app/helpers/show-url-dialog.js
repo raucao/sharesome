@@ -1,5 +1,6 @@
-import { helper } from '@ember/component/helper';
 import $ from 'jquery';
+import { helper } from '@ember/component/helper';
+import { run } from '@ember/runloop';
 import { copyToClipboard } from 'sharesome/helpers/copy-to-clipboard';
 
 export function showUrlDialog(url) {
@@ -11,13 +12,15 @@ export function showUrlDialog(url) {
   $('.vex-content input').first().select();
 
   $('.vex-content button.copy-url').on('click', (e) => {
-    e.preventDefault();
-    copyToClipboard($('.vex-content input').val());
-    $('.vex-content button.copy-url img')
-         .attr('src', '/assets/images/checkmark.svg');
-    setTimeout(() => {
-      window.vex.closeAll();
-    }, 1000);
+    run(() => {
+      e.preventDefault();
+      copyToClipboard($('.vex-content input').val());
+      $('.vex-content button.copy-url img')
+           .attr('src', '/assets/images/checkmark.svg');
+      setTimeout(() => {
+        window.vex.closeAll();
+      }, 1000);
+    })
   });
 }
 
