@@ -9,6 +9,12 @@ module.exports = function(defaults) {
         'apple-touch-icon.png',
         'favicon.ico'
       ]
+    },
+    'asset-cache': {
+      include: [
+        'assets/**/*',
+        '*.png'
+      ],
     }
   });
 
