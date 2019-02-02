@@ -1,22 +1,18 @@
 {
   "name": "sharesome",
   "version": "1.3.0",
-  "description": "Share files from your remote storage",
+  "description": "Quickly share files from your remote storage",
   "repository": "https://github.com/skddc/sharesome",
   "license": "AGPL-3.0",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
-    "build": "npm run clean:dist && ember build",
+    "start": "SW_DISABLED=true ember serve",
+    "test": "SW_DISABLED=true ember test",
+    "build": "SW_DISABLED=true npm run clean:dist && ember build",
     "build:dist": "npm run clean:dist && ember build -prod && bash scripts/update-versionfile",
     "deploy": "bash scripts/deploy",
     "deploy:staging": "bash scripts/deploy-staging",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "start": "ember serve",
-    "test": "ember test",
     "postinstall": "bower install",
     "clean:dist": "rm -rf dist/*"
   },
@@ -46,6 +42,9 @@
     "ember-moment": "^7.8.1",
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
+    "ember-service-worker": "^0.7.2",
+    "ember-service-worker-asset-cache": "^0.6.4",
+    "ember-service-worker-index": "^0.7.0",
     "ember-source": "~3.7.0",
     "eslint-plugin-ember": "^5.2.0",
     "intersection-observer": "^0.5.0",
@@ -56,8 +55,8 @@
     "remotestoragejs": "1.2.1"
   },
   "engines": {
-    "node": "6.* || 8.* || >= 10.*",
-    "npm": ">=3.0.0"
+    "node": "8.* || >= 10.*",
+    "npm": ">= 5.*"
   },
   "authors": [
     "Râu Cao"
