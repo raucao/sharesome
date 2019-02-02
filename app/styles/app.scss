@@ -21,39 +21,52 @@ nav {
   background-color: #222;
   color: #ccc;
 
-  a {
-    color: #eee;
-    text-decoration: none;
-
-    &:hover, &.active {
-      background: #333;
-    }
-
-    &:active {
-      background: #555;
-    }
-  }
-
-
   ul {
     list-style: none;
   }
 
   li {
-    svg {
-      width: 32px;
-      height: auto;
+    a {
+      color: #eee;
+      text-decoration: none;
 
-      path,
-      g rect {
-        fill: #ccc;
+      svg {
+        width: 32px;
+        height: auto;
+
+        path {
+          fill: #888;
+        }
+      }
+
+      &:hover {
+        background: #333;
+      }
+
+      &:active {
+        background: #555;
+      }
+
+      &.active {
+        svg {
+          path {
+            fill: #fff200;
+          }
+        }
       }
     }
+  }
+}
 
-    &#upload {
+// Welcome screen
+body.connect {
+  nav {
+    li#upload {
       a {
-        svg path {
-          fill: #fff200;
+        svg {
+          path {
+            fill: #fff200;
+          }
         }
       }
     }
