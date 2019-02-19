@@ -22,6 +22,10 @@ export default Service.extend({
       modules: [Shares.default]
     });
 
+    remoteStorage.setApiKeys({
+      dropbox: '5cydb14w9641auf'
+    });
+
     remoteStorage.access.claim('shares', 'rw');
 
     remoteStorage.on('ready', () => {
