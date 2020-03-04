@@ -51,8 +51,8 @@
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
     "remotestorage-module-shares": "^2.1.4",
-    "remotestorage-widget": "remotestorage/remotestorage-widget#master",
-    "remotestoragejs": "1.2.1"
+    "remotestorage-widget": "^1.5.0",
+    "remotestoragejs": "^1.2.3"
   },
   "engines": {
     "node": "8.* || >= 10.*",
