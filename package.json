@@ -8,13 +8,14 @@
     "start": "SW_DISABLED=true ember serve",
     "test": "SW_DISABLED=true ember test",
     "build": "SW_DISABLED=true npm run clean:dist && ember build",
-    "build:dist": "npm run clean:dist && ember build -prod && bash scripts/update-versionfile",
-    "deploy": "bash scripts/deploy",
-    "deploy:staging": "bash scripts/deploy-staging",
+    "build:prod": "npm run clean:dist && ember build -prod --output-path release",
+    "version": "npm run build:prod && git add release/",
+    "deploy:staging": "git push 5apps_staging master",
+    "deploy": "git push 5apps master",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "postinstall": "bower install",
-    "clean:dist": "rm -rf dist/*"
+    "clean:dist": "rm -rf release/*"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
