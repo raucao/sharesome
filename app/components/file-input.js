@@ -4,9 +4,8 @@ import Component from '@ember/component';
 export default Component.extend({
 
   tagName: 'input',
-  attributeBindings: ['type', 'accept', 'multiple', 'disabled'],
+  attributeBindings: ['type', 'multiple', 'disabled'],
   type: 'file',
-  accept: 'image/*',
   multiple: false,
 
   attachment: null,
