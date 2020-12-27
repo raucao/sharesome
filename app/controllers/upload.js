@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
+import { isPresent } from '@ember/utils';
 
 export default Controller.extend({
 
@@ -79,7 +80,9 @@ export default Controller.extend({
       let file = this.file;
       this.set('isUploading', true);
 
-      this.rs.shares.storeFile(file.get('type'), file.get('name'), file.get('binary')).then(url => {
+      const filetype = isPresent(file.get('type')) ? file.get('type') : 'application/octet-stream';
+
+      this.rs.shares.storeFile(filetype, file.get('name'), file.get('binary')).then(url => {
         this.setProperties({
           file: null,
           isUploading: false
