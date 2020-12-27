@@ -28,8 +28,8 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `npm start`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+* Visit the app at [http://localhost:4200](http://localhost:4200).
+* Visit the tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
 ### Code Generators
 
@@ -37,8 +37,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `npm test` for one-off runs
+* `ember test --server` to watch files and run tests automatically
 
 ### Linting
 
@@ -49,7 +49,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Building
 
 * `npm run build` (development)
-* `npm run build:dist` (production)
+* `npm run build:prod` (production)
 
 ### Deploying
 
