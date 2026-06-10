@@ -1,23 +1,12 @@
-import Application from '@ember/application';
-import { run } from '@ember/runloop';
-import VexInitializer from '../../../initializers/vex';
 import { module, test } from 'qunit';
-
-let application;
+import { setupTest } from 'ember-qunit';
+import VexInitializer from 'sharesome/initializers/vex';
 
 module('Unit | Initializer | vex', function(hooks) {
-  hooks.beforeEach(function() {
-    run(function() {
-      application = Application.create();
-      application.deferReadiness();
-    });
-  });
+  setupTest(hooks);
 
-  // Replace this with your real tests.
   test('it works', function(assert) {
-    VexInitializer.initialize(application);
-
-    // you would normally confirm the results of the initializer here
+    VexInitializer.initialize(this.owner);
     assert.ok(true);
   });
 });

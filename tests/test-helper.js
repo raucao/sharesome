@@ -1,15 +1,20 @@
-import Application from '../app';
-import config from '../config/environment';
+import Application from 'sharesome/app';
+import config from 'sharesome/config/environment';
 import { setApplication } from '@ember/test-helpers';
-import { start } from 'ember-qunit';
+import { start as qunitStart } from 'ember-qunit';
 
-setApplication(Application.create(config.APP));
+// Eagerly load all application files during tests so they are registered in the loader registry
+import.meta.glob('../app/**/*.{js,ts}', { eager: true });
 
-window.vex = { defaultOptions: {} };
-window.RemoteStorage = {
-  WireClient: {},
-  log: () => { return true; }
-};
-window.remoteStorage = {};
+export function start() {
+  setApplication(Application.create(config.APP));
 
-start();
+  window.vex = { defaultOptions: {} };
+  window.RemoteStorage = {
+    WireClient: {},
+    log: () => { return true; }
+  };
+  window.remoteStorage = {};
+
+  qunitStart();
+}

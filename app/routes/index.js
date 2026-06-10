@@ -5,19 +5,14 @@ import { Promise } from 'rsvp';
 
 export default Route.extend({
 
+  router: service(),
   storage: service('remotestorage'),
 
   beforeModel () {
     return this.waitForConnectionState().then(() => {
       if (this.get('storage.disconnected')) {
-        this.transitionTo('connect');
+        this.router.transitionTo('connect');
       }
-    });
-  },
-
-  renderTemplate () {
-    this.render('upload', {
-      controller: 'upload'
     });
   },
 
@@ -40,7 +35,7 @@ export default Route.extend({
     this._super(...arguments);
 
     this.get('storage.rs').on('disconnected', () => {
-      this.transitionTo('connect');
+      this.router.transitionTo('connect');
     });
   }
 

@@ -1,0 +1,24 @@
+{{#if this.isImage}}
+  <div class="image" data-src="{{this.thumbnailUrl}}"></div>
+{{else}}
+  <div class="image generic-file">
+    <p class="meta">{{this.nameWithoutTimestamp}}</p>
+  </div>
+{{/if}}
+
+<div class="overlay {{if this.overlayIsVisible "visible"}}">
+  <a class="share" {{on "click" this.share}} role="button"><i class="icon-export"></i></a>
+  <a class="zoom" {{on "click" this.zoom}} role="button"><i class="icon-eye"></i></a>
+  <a class="go-to-url" href="{{this.url}}" target="_blank" rel="noopener"><i class="icon-download"></i></a>
+  <a class="delete" {{on "click" this.remove}} role="button"><i class="icon-trash"></i></a>
+</div>
+
+{{#if this.item.isDeleting}}
+  <div class="overlay-deleting">
+    {{#if this.isSmallScreen}}
+      <LoadingSpinner @height={{120}} @width={{3}} @radius={{20}} @color="#eee" />
+    {{else}}
+      <LoadingSpinner @height={{200}} @width={{4}} @radius={{20}} @color="#eee" />
+    {{/if}}
+  </div>
+{{/if}}

@@ -1,0 +1,37 @@
+<FileDropzone @hasFileToUpload={{this.hasFileToUpload}}
+              @readInputFile={{this.readInputFile}} />
+
+{{#if this.hasFileToUpload}}
+  {{#if this.isUploading}}
+    <section class="content upload-in-progress">
+      {{#if this.isSmallScreen}}
+        <LoadingSpinner @height={{200}} @width={{4}} @radius={{20}} @color="#222" />
+      {{else}}
+        <LoadingSpinner @height={{300}} @width={{5}} @radius={{30}} @color="#222" />
+      {{/if}}
+      <p>Uploading</p>
+    </section>
+  {{else}}
+    <section class="content upload-preview">
+      <div class="upload-preview">
+        {{#if this.fileIsImage}}
+          <div id="file-preview" class="image">
+            <img id="preview-image" src="{{this.file.base64}}" alt="preview">
+          </div>
+        {{else}}
+          <div id="file-preview" class="{{this.simpleFileType}}">
+            <p>icon for CSS class<br><code>#filepreview.{{this.simpleFileType}}</code></p>
+          </div>
+        {{/if}}
+        <p class="meta-data">
+          <span class="name">{{this.file.name}}</span>
+          <span class="size">{{human-file-size this.file.size}}</span>
+        </p>
+        <p class="actions">
+          <button {{on "click" this.submitFileUpload}} class="upload">Upload</button>
+          <button {{on "click" this.cancelFileUpload}} class="cancel">Cancel</button>
+        </p>
+      </div>
+    </section>
+  {{/if}}
+{{/if}}

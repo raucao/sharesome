@@ -1,81 +1,84 @@
 import Component from '@ember/component';
 import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
-
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
 
-export default Component.extend({
+export default class HistoryItemComponent extends Component {
+  tagName = 'li';
+  @service remotestorage;
 
-  tagName: 'li',
-  remotestorage: service(),
+  overlayIsVisible = false;
+  @alias('item.url') url;
+  @alias('item.name') name;
 
-  overlayIsVisible: false,
-  url: alias('item.url'),
-  name: alias('item.name'),
-
-  isImage: computed('url', function() {
+  @computed('url')
+  get isImage() {
     return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
-  }),
+  }
 
-  thumbnailUrl: computed('name', function() {
-    return this.get('remotestorage.shares').getThumbnailURL(this.name);
-  }),
+  @computed('name')
+  get thumbnailUrl() {
+    return this.remotestorage.shares.getThumbnailURL(this.name);
+  }
 
-  nameWithoutTimestamp: computed('name', function() {
+  @computed('name')
+  get nameWithoutTimestamp() {
     return this.name.substr(12);
-  }),
+  }
 
-  isSmallScreen: computed(function() {
+  get isSmallScreen() {
     return window.innerWidth <= 640;
-  }).volatile(),
+  }
 
-  // Events
+  didInsertElement() {
+    super.didInsertElement(...arguments);
+    const imgEl = this.element.querySelector('.image');
+    if (imgEl) {
+      this.imagesObserver.observe(imgEl);
+    }
+  }
 
-  didInsertElement () {
-    this._super(...arguments);
-    this.imagesObserver.observe(this.$('.image')[0]);
-  },
-
-  click: function() {
+  click() {
     if (this.isSmallScreen) {
       this.toggleProperty('overlayIsVisible');
     }
-  },
-
-  actions: {
-
-    share: function() {
-      showUrlDialog(this.url);
-    },
-
-    zoom: function() {
-      let dialogContent;
-
-      if (this.isImage) {
-        dialogContent = "<img src='"+this.url+"' class='zoomed'>";
-      } else {
-        dialogContent = "No preview available.";
-      }
-
-      window.vex.dialog.alert(dialogContent);
-    },
-
-    remove: function() {
-      this.set('item.isDeleting', true);
-
-      this.get('remotestorage.shares').remove(this.name).then(
-        () => {
-          this.removeItem(this.item);
-        },
-        error => {
-          this.set('item.isDeleting', false);
-          window.alert("Couldn't remove item. Please try again. Sorry!");
-          console.log(error);
-        }
-      );
-    }
-
   }
 
-});
+  @action
+  share(e) {
+    e.stopPropagation();
+    showUrlDialog(this.url);
+  }
+
+  @action
+  zoom(e) {
+    e.stopPropagation();
+    let dialogContent;
+
+    if (this.isImage) {
+      dialogContent = "<img src='"+this.url+"' class='zoomed'>";
+    } else {
+      dialogContent = "No preview available.";
+    }
+
+    window.vex.dialog.alert({ unsafeMessage: dialogContent });
+  }
+
+  @action
+  remove(e) {
+    e.stopPropagation();
+    this.set('item.isDeleting', true);
+
+    this.remotestorage.shares.remove(this.name).then(
+      () => {
+        this.removeItem(this.item);
+      },
+      error => {
+        this.set('item.isDeleting', false);
+        window.alert("Couldn't remove item. Please try again. Sorry!");
+        console.log(error);
+      }
+    );
+  }
+}

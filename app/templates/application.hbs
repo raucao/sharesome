@@ -1,10 +1,10 @@
 <nav>
   <ul>
     <li id="upload">
-      {{#link-to "index" title="Share"}}{{icon-upload}}{{/link-to}}
+      <LinkTo @route="index" title="Share"><Icon::Upload /></LinkTo>
     </li>
     <li id="history">
-      {{#link-to "history" title="History"}}{{icon-history}}{{/link-to}}
+      <LinkTo @route="history" title="History"><Icon::History /></LinkTo>
     </li>
   </ul>
 </nav>
