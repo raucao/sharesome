@@ -9,7 +9,10 @@
     "build": "vite build",
     "test": "vite build --mode development && ember test --path dist",
     "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint ."
+    "lint:js": "eslint .",
+    "version": "vite build && git add release/",
+    "deploy:staging": "git push 5apps_staging master",
+    "deploy": "git push 5apps master"
   },
   "dependencies": {
     "moment": "^2.30.1",
