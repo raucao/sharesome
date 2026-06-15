@@ -1,9 +1,9 @@
 import { not } from '@ember/object/computed';
 import Service from '@ember/service';
 import { scheduleOnce } from '@ember/runloop';
-import RemoteStorage from 'npm:remotestoragejs';
-import Widget from 'npm:remotestorage-widget';
-import Shares from 'npm:remotestorage-module-shares';
+import RemoteStorage from 'remotestoragejs';
+import Widget from 'remotestorage-widget';
+import Shares from 'remotestorage-module-shares';
 
 export default Service.extend({
 
@@ -19,7 +19,7 @@ export default Service.extend({
     let remoteStorage = new RemoteStorage({
       cache: false,
       requestTimeout: 90000,
-      modules: [Shares.default]
+      modules: [Shares]
     });
 
     remoteStorage.access.claim('shares', 'rw');
@@ -74,9 +74,15 @@ export default Service.extend({
       // skipInitial: true
     });
 
-    scheduleOnce('afterRender', () => {
-      widget.attach('rs-widget-container');
-    });
+    const attachWidget = () => {
+      if (document.getElementById('rs-widget-container')) {
+        widget.attach('rs-widget-container');
+      } else {
+        setTimeout(attachWidget, 50);
+      }
+    };
+
+    scheduleOnce('afterRender', attachWidget);
 
     this.set('widget', widget);
 

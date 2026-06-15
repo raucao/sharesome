@@ -5,12 +5,23 @@ import { Promise } from 'rsvp';
 
 export default Route.extend({
 
+  router: service(),
   storage: service('remotestorage'),
+
+  activate() {
+    this._super(...arguments);
+    document.body.classList.add('connect');
+  },
+
+  deactivate() {
+    this._super(...arguments);
+    document.body.classList.remove('connect');
+  },
 
   beforeModel() {
     return this.waitForConnectionState().then(() => {
       if (this.get('storage.connected')) {
-        this.transitionTo('index');
+        this.router.transitionTo('index');
       }
     });
   },

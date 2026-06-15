@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import BodyClassMixin from 'ember-body-class/mixins/body-class';
 
-export default Route.extend(BodyClassMixin, {
+export default Route.extend({
 
+  router: service(),
   storage: service('remotestorage'),
 
   beforeModel () {
@@ -32,7 +32,7 @@ export default Route.extend(BodyClassMixin, {
       connected: false
     });
 
-    this.transitionTo('connect');
+    this.router.transitionTo('connect');
   }
 
 });

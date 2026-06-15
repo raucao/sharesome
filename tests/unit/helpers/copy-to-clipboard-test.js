@@ -1,4 +1,4 @@
-import { copyToClipboard } from '../../../helpers/copy-to-clipboard';
+import { copyToClipboard } from 'sharesome/helpers/copy-to-clipboard';
 import { module, test } from 'qunit';
 
 module('Unit | Helper | copy to clipboard', function() {

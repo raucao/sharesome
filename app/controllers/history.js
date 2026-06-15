@@ -2,16 +2,15 @@
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 import { scheduleOnce } from '@ember/runloop';
-import { computed, observer } from '@ember/object';
+import { action } from '@ember/object';
 
-export default Controller.extend({
+export default class HistoryController extends Controller {
+  queryInput = '';
+  sortProperties = Object.freeze(['name:desc']);
 
-  queryInput: '',
+  @sort('filteredModel', 'sortProperties') sortedModel;
 
-  sortProperties: Object.freeze(['name:desc']),
-  sortedModel: sort('filteredModel', 'sortProperties'),
-
-  queryChanged: observer('queryInput', 'model', function() {
+  queryChanged() {
     let model = this.model;
     let queryInput = this.queryInput;
 
@@ -20,16 +19,18 @@ export default Controller.extend({
     }
 
     this.set('filteredModel', model);
-  }),
+  }
 
-  itemCount: computed('model.[]', function() {
+  get itemCount() {
     return this.model.length;
-  }),
+  }
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
+    this.addObserver('queryInput', this, this.queryChanged);
+    this.addObserver('model', this, this.queryChanged);
     scheduleOnce('afterRender', this, 'lazyLoadImages');
-  },
+  }
 
   lazyLoadImages() {
     const preloadImage = function(img) {
@@ -44,7 +45,7 @@ export default Controller.extend({
       threshold: 0
     };
 
-    let observer = new IntersectionObserver(function (entries, self) {
+    let observer = new IntersectionObserver((entries, self) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           preloadImage(entry.target);
@@ -54,14 +55,10 @@ export default Controller.extend({
     }, config);
 
     this.set('imagesIntersectionObserver', observer);
-  },
-
-  actions: {
-
-    removeItem(item) {
-      this.model.removeObject(item);
-    }
-
   }
 
-});
+  @action
+  removeItem(item) {
+    this.model.removeObject(item);
+  }
+}

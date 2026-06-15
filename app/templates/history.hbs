@@ -1,13 +1,13 @@
 <section class="content history">
   <div class="search">
-    {{input value=queryInput placeholder="Search" class="search-field"}}
+    <Input @value={{this.queryInput}} placeholder="Search" class="search-field" />
   </div>
-  {{#if sortedModel}}
+  {{#if this.sortedModel}}
     <ul>
-      {{#each sortedModel as |item|}}
-        {{history-item item=item
-                       removeItem=(action "removeItem")
-                       imagesObserver=imagesIntersectionObserver}}
+      {{#each this.sortedModel as |item|}}
+        <HistoryItem @item={{item}}
+                     @removeItem={{this.removeItem}}
+                     @imagesObserver={{this.imagesIntersectionObserver}} />
       {{/each}}
     </ul>
   {{else}}
