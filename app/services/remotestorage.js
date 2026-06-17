@@ -24,6 +24,11 @@ export default Service.extend({
 
     remoteStorage.access.claim('shares', 'rw');
 
+    remoteStorage.setApiKeys({
+      dropbox: '5cydb14w9641auf',
+      // googledrive: 'your-client-id'
+    });
+
     remoteStorage.on('ready', () => {
       console.debug('RS ready');
       // this.setProperties({

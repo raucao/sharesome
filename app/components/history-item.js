@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 import { inject as service } from '@ember/service';
 import { computed, action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default class HistoryItemComponent extends Component {
   tagName = 'li';
@@ -12,14 +13,24 @@ export default class HistoryItemComponent extends Component {
   @alias('item.url') url;
   @alias('item.name') name;
 
-  @computed('url')
-  get isImage() {
-    return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
-  }
+  thumbnailUrl = null;
+  isIntersected = false;
 
   @computed('name')
-  get thumbnailUrl() {
-    return this.remotestorage.shares.getThumbnailURL(this.name);
+  get isImage() {
+    return this.name && this.name.match(/\.(jpg|jpeg|png|gif|webp)$/i);
+  }
+
+  @computed('isIntersected', 'thumbnailUrl')
+  get imageStyle() {
+    if (this.isIntersected && this.thumbnailUrl) {
+      let url = this.thumbnailUrl;
+      if (url.includes('dropbox.com')) {
+        url = url.replace('dl=0', 'raw=1');
+      }
+      return htmlSafe(`background-image: url('${url}');`);
+    }
+    return htmlSafe('');
   }
 
   @computed('name')
@@ -31,12 +42,41 @@ export default class HistoryItemComponent extends Component {
     return window.innerWidth <= 640;
   }
 
+  async didReceiveAttrs() {
+    super.didReceiveAttrs(...arguments);
+    if (this.name) {
+      try {
+        let url = await this.remotestorage.shares.getThumbnailURL(this.name);
+        if (!this.isDestroying && !this.isDestroyed) {
+          this.set('thumbnailUrl', url);
+        }
+      } catch (error) {
+        console.error('Failed to load thumbnail URL', error);
+      }
+    }
+  }
+
   didInsertElement() {
     super.didInsertElement(...arguments);
     const imgEl = this.element.querySelector('.image');
     if (imgEl) {
-      this.imagesObserver.observe(imgEl);
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.set('isIntersected', true);
+            this.observer.disconnect();
+          }
+        });
+      });
+      this.observer.observe(imgEl);
     }
+  }
+
+  willDestroyElement() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    super.willDestroyElement(...arguments);
   }
 
   click() {
@@ -57,7 +97,11 @@ export default class HistoryItemComponent extends Component {
     let dialogContent;
 
     if (this.isImage) {
-      dialogContent = "<img src='"+this.url+"' class='zoomed'>";
+      let url = this.url;
+      if (url && url.includes('dropbox.com')) {
+        url = url.replace('dl=0', 'raw=1');
+      }
+      dialogContent = "<img src='"+url+"' class='zoomed'>";
     } else {
       dialogContent = "No preview available.";
     }

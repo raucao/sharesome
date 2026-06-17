@@ -1,7 +1,5 @@
-/* global IntersectionObserver */
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
-import { scheduleOnce } from '@ember/runloop';
 import { action } from '@ember/object';
 
 export default class HistoryController extends Controller {
@@ -29,32 +27,6 @@ export default class HistoryController extends Controller {
     super.init(...arguments);
     this.addObserver('queryInput', this, this.queryChanged);
     this.addObserver('model', this, this.queryChanged);
-    scheduleOnce('afterRender', this, 'lazyLoadImages');
-  }
-
-  lazyLoadImages() {
-    const preloadImage = function(img) {
-      const src = img.getAttribute('data-src');
-      if (!src) { return; }
-      img.style = `background-image:url('${src}');`;
-    };
-
-    const config = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0
-    };
-
-    let observer = new IntersectionObserver((entries, self) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          preloadImage(entry.target);
-          self.unobserve(entry.target);
-        }
-      });
-    }, config);
-
-    this.set('imagesIntersectionObserver', observer);
   }
 
   @action
