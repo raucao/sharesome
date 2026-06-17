@@ -24,7 +24,11 @@ export default class HistoryItemComponent extends Component {
   @computed('isIntersected', 'thumbnailUrl')
   get imageStyle() {
     if (this.isIntersected && this.thumbnailUrl) {
-      return htmlSafe(`background-image: url('${this.thumbnailUrl}');`);
+      let url = this.thumbnailUrl;
+      if (url.includes('dropbox.com')) {
+        url = url.replace('dl=0', 'raw=1');
+      }
+      return htmlSafe(`background-image: url('${url}');`);
     }
     return htmlSafe('');
   }
@@ -93,7 +97,11 @@ export default class HistoryItemComponent extends Component {
     let dialogContent;
 
     if (this.isImage) {
-      dialogContent = "<img src='"+this.url+"' class='zoomed'>";
+      let url = this.url;
+      if (url && url.includes('dropbox.com')) {
+        url = url.replace('dl=0', 'raw=1');
+      }
+      dialogContent = "<img src='"+url+"' class='zoomed'>";
     } else {
       dialogContent = "No preview available.";
     }
