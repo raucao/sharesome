@@ -6,8 +6,7 @@
     <ul>
       {{#each this.sortedModel as |item|}}
         <HistoryItem @item={{item}}
-                     @removeItem={{this.removeItem}}
-                     @imagesObserver={{this.imagesIntersectionObserver}} />
+                     @removeItem={{this.removeItem}} />
       {{/each}}
     </ul>
   {{else}}

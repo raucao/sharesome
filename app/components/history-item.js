@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 import { showUrlDialog } from 'sharesome/helpers/show-url-dialog';
 import { inject as service } from '@ember/service';
 import { computed, action } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default class HistoryItemComponent extends Component {
   tagName = 'li';
@@ -13,10 +14,19 @@ export default class HistoryItemComponent extends Component {
   @alias('item.name') name;
 
   thumbnailUrl = null;
+  isIntersected = false;
 
-  @computed('url')
+  @computed('name')
   get isImage() {
-    return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
+    return this.name && this.name.match(/\.(jpg|jpeg|png|gif|webp)$/i);
+  }
+
+  @computed('isIntersected', 'thumbnailUrl')
+  get imageStyle() {
+    if (this.isIntersected && this.thumbnailUrl) {
+      return htmlSafe(`background-image: url('${this.thumbnailUrl}');`);
+    }
+    return htmlSafe('');
   }
 
   @computed('name')
@@ -46,8 +56,23 @@ export default class HistoryItemComponent extends Component {
     super.didInsertElement(...arguments);
     const imgEl = this.element.querySelector('.image');
     if (imgEl) {
-      this.imagesObserver.observe(imgEl);
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.set('isIntersected', true);
+            this.observer.disconnect();
+          }
+        });
+      });
+      this.observer.observe(imgEl);
     }
+  }
+
+  willDestroyElement() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+    super.willDestroyElement(...arguments);
   }
 
   click() {
