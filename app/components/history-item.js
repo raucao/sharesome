@@ -12,14 +12,11 @@ export default class HistoryItemComponent extends Component {
   @alias('item.url') url;
   @alias('item.name') name;
 
+  thumbnailUrl = null;
+
   @computed('url')
   get isImage() {
     return this.url.match(/(jpg|jpeg|png|gif|webp)$/i);
-  }
-
-  @computed('name')
-  get thumbnailUrl() {
-    return this.remotestorage.shares.getThumbnailURL(this.name);
   }
 
   @computed('name')
@@ -29,6 +26,20 @@ export default class HistoryItemComponent extends Component {
 
   get isSmallScreen() {
     return window.innerWidth <= 640;
+  }
+
+  async didReceiveAttrs() {
+    super.didReceiveAttrs(...arguments);
+    if (this.name) {
+      try {
+        let url = await this.remotestorage.shares.getThumbnailURL(this.name);
+        if (!this.isDestroying && !this.isDestroyed) {
+          this.set('thumbnailUrl', url);
+        }
+      } catch (error) {
+        console.error('Failed to load thumbnail URL', error);
+      }
+    }
   }
 
   didInsertElement() {
